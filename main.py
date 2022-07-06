@@ -35,8 +35,7 @@ async def sourcehelp(ctx):
 @client.command()
 async def help(ctx):
   embed = discord.Embed(title="__Command Menu__", color=0x2b2a2a)
-  embed.add_field(value="**b64** {encode/e/decode/d} {\"string\"} - *encodes or decodes base64 text*", inline=False)
-  embed.add_field(value="**leet** {encode/e/decode/d} {\"string\"} - *encodes or decodes leet text*", inline=False)
+  embed.add_field(name="Cryptography", value="**b64** {encode/e/decode/d} {\"string\"} - *encodes or decodes base64 text* \n **leet** {encode/e/decode/d} {\"string\"} - *encodes or decodes leet text*", inline=False)
   await ctx.send(embed=embed)
 
 # mimic
