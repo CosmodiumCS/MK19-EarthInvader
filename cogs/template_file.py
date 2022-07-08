@@ -1,7 +1,6 @@
 # IMPORTS
 import discord
 from discord.ext import commands
-import base64
 
 # INIT CLASS
 # should be the same name as the file
@@ -12,7 +11,8 @@ class x(commands.Cog):
     # callback to shell showing that the cog is loaded
     @commands.Cog.listener()
     async def on_ready(self):
-        print('x Online')
+        #print('cog name Online')
+        print('template_file Online')
 
     # the actual command
     # x should be the name of the command which should optimally be the same name as the file
