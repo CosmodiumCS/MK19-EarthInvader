@@ -32,11 +32,26 @@ async def sourcehelp(ctx):
   embed.add_field(name="Source code available on github", value="https://github.com/Soulsender/Earth-Invader", inline=False)
   await ctx.send(embed=embed)
 
+# cryptography help menu
 @client.command()
 async def help(ctx):
-  embed = discord.Embed(title="__Command Menu__", color=0x2b2a2a)
-  embed.add_field(name="Cryptography", value="**b64** {encode/e/decode/d} {\"string\"} - *encodes or decodes base64 text* \n **leet** {encode/e/decode/d} {\"string\"} - *encodes or decodes leet text*", inline=False)
+  embed = discord.Embed(title="Earth Invader", color=0x2b2a2a)
+  embed.url = 'https://github.com/CryptexProject/Earth-Invader'
+  embed.set_author(name='Soulsender#3162', url='https://soulsender.github.io')
+  embed.description = 'Basic Cryptography Commands'
+
+  embed.add_field(name="Base64", value="`b64 {encode/e & decode/d} {\"string\"}`\n"
+                                       "Encoding and decoding from base64.", inline=False)
+  embed.add_field(name="133T 5P34K", value="`leet {encode/e & decode/d} {\"string\"}`\n"
+                                       "Encoding and decoding from 133T 5P34K (Leet Speak).", inline=False)
+  embed.add_field(name="Hex", value="`hex {encode/e & decode/d} {\"string\"}`\n"
+                                       "Encoding and decoding from Hex.", inline=False)
+  embed.add_field(name="Caesar Cipher", value="`cc {encode/e & decode/d} {\"string\"} {key 1}`\n"
+                                    "Encoding and decoding with Caesar Cipher. *Requires a Key as an integer.*", inline=False)
+
+  embed.set_footer(text='Created by the Cryptex Project. See the wiki for documentation.')
   await ctx.send(embed=embed)
+
 
 # mimic
 @client.command()
