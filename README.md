@@ -1,4 +1,4 @@
-# Earth-Invader
+# Earth-Invader v0.1
 Discord bot using the cryptography toolkit of [Cryptex](https://github.com/AlexKollar/Cryptex)
 
 ## Usage
