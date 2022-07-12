@@ -14,7 +14,7 @@ class cc(commands.Cog):
         print('cc Online')
 
     @commands.command()
-    async def cc(self, ctx, action, text, key):
+    async def cc(self, ctx, action, key, *, text):
 
         # encodes caesar
         if action == "encode" or action == "e":

@@ -4,7 +4,6 @@
 
 import discord
 from discord.ext import commands
-import base64
 
 class hex(commands.Cog):
     def __init__(self, client):
@@ -15,7 +14,7 @@ class hex(commands.Cog):
         print('hex Online')
 
     @commands.command()
-    async def hex(self, ctx, action, text):
+    async def hex(self, ctx, action, *, text):
 
         # encode hex
         if action == "encode" or action == "e":

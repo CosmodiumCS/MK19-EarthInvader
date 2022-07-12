@@ -17,7 +17,7 @@ class x(commands.Cog):
     # the actual command
     # x should be the name of the command which should optimally be the same name as the file
     @commands.command()
-    async def x(self, ctx, action, text):
+    async def x(self, ctx, action, *, text):
 
         # "encode" or "e" entered
         if action == "encode" or action == "e":

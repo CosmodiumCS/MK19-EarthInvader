@@ -14,7 +14,7 @@ class b64(commands.Cog):
         print('b64 Online')
 
     @commands.command()
-    async def b64(self, ctx, action, text):
+    async def b64(self, ctx, action, *, text):
         # "encode" or "e" entered
         if action == "encode" or action == "e":
             text = text.encode('ascii')

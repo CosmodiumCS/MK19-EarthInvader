@@ -9,7 +9,7 @@ class leet(commands.Cog):
         print('133T Online')
 
     @commands.command()
-    async def leet(self, ctx, action, text):
+    async def leet(self, ctx, action, *, text):
         # leetspeek for [cryptex] project
         # created by : Fyzz
 
