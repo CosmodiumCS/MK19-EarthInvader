@@ -1,3 +1,5 @@
+
+# created by Soulsender
 import discord
 import os
 from discord.ext import commands
