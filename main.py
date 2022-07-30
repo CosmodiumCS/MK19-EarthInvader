@@ -51,6 +51,12 @@ async def help(ctx):
                                        "Encoding and decoding from Hex.", inline=False)
     embed.add_field(name="Caesar Cipher", value="`cc {encode/e & decode/d} {\"string\"} {key 1}`\n"
                                     "Encoding and decoding with Caesar Cipher. *Requires a Key as an integer.*", inline=False)
+    embed.add_field(name="Rot47", value="`r47 {encode/e & decode/d} {\"string\"}`\n"
+                                                "Encoding and decoding with Rotation 47.", inline=False)
+    embed.add_field(name="Rot13", value="`r13 {encode/e & decode/d} {\"string\"}`\n"
+                                                "Encoding and decoding with Rotation 13.", inline=False)
+    embed.add_field(name="bin", value="`bin {encode/e & decode/d} {\"string\"}`\n"
+                                                "Encoding and decoding with binary.", inline=False)
 
     embed.set_footer(text='Created by the Cryptex Project. See the wiki for documentation.')
     await ctx.send(embed=embed)
