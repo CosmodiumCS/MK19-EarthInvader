@@ -1,5 +1,4 @@
 # IMPORTS
-import discord
 from discord.ext import commands
 
 # INIT CLASS
@@ -11,7 +10,7 @@ class cc(commands.Cog):
     # callback to shell showing that the cog is loaded
     @commands.Cog.listener()
     async def on_ready(self):
-        print('cc Online')
+        print(__file__, ' Online')
 
     @commands.command()
     async def cc(self, ctx, action, key, *, text):

@@ -11,7 +11,7 @@ class b64(commands.Cog):
 
     @commands.Cog.listener()
     async def on_ready(self):
-        print('b64 Online')
+        print(__file__, ' Online')
 
     @commands.command()
     async def b64(self, ctx, action, *, text):

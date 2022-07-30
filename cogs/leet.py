@@ -1,3 +1,8 @@
+#!/usr/bin/python
+
+# leetspeek for [cryptex] project
+# created by : Fyzz
+
 from discord.ext import commands
 
 class leet(commands.Cog):
@@ -6,7 +11,7 @@ class leet(commands.Cog):
 
     @commands.Cog.listener()
     async def on_ready(self):
-        print('133T Online')
+        print(__file__, ' Online')
 
     @commands.command()
     async def leet(self, ctx, action, *, text):

@@ -2,7 +2,6 @@
 # New Rot47 cipher for the the codex project
 # created by : Fyzz
 
-import discord
 from discord.ext import commands
 
 class r47(commands.Cog):
@@ -11,7 +10,7 @@ class r47(commands.Cog):
 
     @commands.Cog.listener()
     async def on_ready(self):
-        print('hex Online')
+        print(__file__, ' Online')
 
     @commands.command()
     async def r47(self, ctx, action, *, text):

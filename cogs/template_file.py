@@ -1,5 +1,4 @@
 # IMPORTS
-import discord
 from discord.ext import commands
 
 # INIT CLASS
@@ -12,7 +11,7 @@ class x(commands.Cog):
     @commands.Cog.listener()
     async def on_ready(self):
         #print('cog name Online')
-        print('template_file Online')
+        print(__file__, ' Online')
 
     # the actual command
     # x should be the name of the command which should optimally be the same name as the file
