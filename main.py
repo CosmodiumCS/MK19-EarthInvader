@@ -55,7 +55,7 @@ async def help(ctx):
                                                 "Encoding and decoding with Rotation 47.", inline=False)
     embed.add_field(name="Rot13", value="`r13 {encode/e & decode/d} {\"string\"}`\n"
                                                 "Encoding and decoding with Rotation 13.", inline=False)
-    embed.add_field(name="bin", value="`bin {encode/e & decode/d} {\"string\"}`\n"
+    embed.add_field(name="Binary", value="`bin {encode/e & decode/d} {\"string\"}`\n"
                                                 "Encoding and decoding with binary.", inline=False)
 
     embed.set_footer(text='Created by the Cryptex Project. See the wiki for documentation.')
