@@ -1,45 +1,44 @@
-
-# created by Soulsender
 import discord
 import os
+from colorama import Fore
 from discord.ext import commands
-from dotenv import load_dotenv
 
-load_dotenv()
-
-client = commands.Bot(command_prefix="*", activity = discord.Game(name="*help"))
+client = commands.Bot(command_prefix="*", activity = discord.Game(name="I'm in fucking alpha don't expect much"))
 client.remove_command('help')
 
 
 @client.command()
 async def load(ctx, extension):
-    client.load_extension('cogs.{extension}')
+  client.load_extension('cogs.{extension}')
 
 @client.command()
 async def unload(ctx, extension):
-    client.unload_extension('cogs.{extension}')
+  client.unload_extension('cogs.{extension}')
 
 for filename in os.listdir('./cogs'):
-    if filename.endswith('.py'):
-        client.load_extension(f'cogs.{filename[:-3]}')
+  if filename.endswith('.py'):
+    client.load_extension(f'cogs.{filename[:-3]}')
 
 @client.event
 async def on_ready():
-    print(__file__, ' Online')
-    print('{0.user} standing by'.format(client))
-    # DO NOT DO ANYTHING IN on_ready!
+  # init sequence, only print statements allowed
+  print("===== BOT INITILIZATION =====")
+  print(Fore.GREEN, '{0.user} standing by'.format(client), Fore.RESET)
+  print("===== SERVERS LOADED =====")
+  print(Fore.BLUE, '\n'.join(guild.name for guild in client.guilds), Fore.RESET)
+  print("===== MODULES LOADED =====", Fore.YELLOW)
 
 @client.command()
 async def sourcehelp(ctx):
-    embed = discord.Embed(title="__Source Code__", color=0x4287f5)
-    embed.add_field(name="Source code available on github", value="https://github.com/Soulsender/Earth-Invader", inline=False)
-    await ctx.send(embed=embed)
+  embed = discord.Embed(title="__Source Code__", color=0x4287f5)
+  embed.add_field(name="Source code available on github", value="https://github.com/Soulsender/Earth-Invader", inline=False)
+  await ctx.send(embed=embed)
 
 # cryptography help menu
 @client.command()
 async def help(ctx):
-    embed = discord.Embed(title="Earth Invader", color=0x2b2a2a)
-    embed.url = 'https://github.com/CryptexProject/Earth-Invader'
+    embed = discord.Embed(title="Codex Bot", color=0x2b2a2a)
+    embed.url = 'https://github.com/Soulsender/Codex-Bot'
     embed.set_author(name='Soulsender#3162', url='https://soulsender.github.io')
     embed.description = 'Basic Cryptography Commands'
 
@@ -55,18 +54,24 @@ async def help(ctx):
                                                 "Encoding and decoding with Rotation 47.", inline=False)
     embed.add_field(name="Rot13", value="`r13 {encode/e & decode/d} {\"string\"}`\n"
                                                 "Encoding and decoding with Rotation 13.", inline=False)
-    embed.add_field(name="bin", value="`bin {encode/e & decode/d} {\"string\"}`\n"
+    embed.add_field(name="Binary", value="`bin {encode/e & decode/d} {\"string\"}`\n"
                                                 "Encoding and decoding with binary.", inline=False)
 
-    embed.set_footer(text='Created by the Cryptex Project. See the wiki for documentation.')
+    embed.set_footer(text='Created by Soulsender. See the wiki for documentation.')
     await ctx.send(embed=embed)
 
 
 # mimic
 @client.command()
 @commands.has_role('Bot Admin') # Checks for Administrator rank.
-async def mimic(ctx, *, question):
+async def m(ctx, *, question):
     await ctx.message.delete()
     await ctx.send(f'{question}')
 
-client.run(str(os.getenv('TOKEN')))
+@client.command()
+async def servers(ctx):
+  servers = list(client.guilds)
+  await ctx.send(f"Connected on {str(len(servers))} servers:")
+  await ctx.send('\n'.join(guild.name for guild in client.guilds))
+
+client.run(os.getenv('TOKEN'))
