@@ -76,4 +76,4 @@ async def servers(ctx):
   await ctx.send(f"Connected on {str(len(servers))} servers:")
   await ctx.send('\n'.join(guild.name for guild in client.guilds))
 
-client.run(os.getenv('TOKEN'))
+client.run(str(os.getenv('TOKEN')))
