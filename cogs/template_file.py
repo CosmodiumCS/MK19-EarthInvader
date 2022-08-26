@@ -37,5 +37,5 @@ class x(commands.Cog):
             await ctx.send(output)
 
 # x should be the same name as the init class
-def setup(client):
-    client.add_cog(x(client))
+async def setup(client):
+    await client.add_cog(x(client))

@@ -37,5 +37,5 @@ class b64(commands.Cog):
             embed.add_field(name="Commands", value="**decode** or **d** - decode base64 encoded text \n **encode** or **e** - base64 encode text", inline=False)
             await ctx.send(embed=embed)
 
-def setup(client):
-    client.add_cog(b64(client))
+async def setup(client):
+    await client.add_cog(b64(client))

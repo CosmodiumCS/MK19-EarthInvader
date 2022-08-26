@@ -42,5 +42,5 @@ class r47(commands.Cog):
             await ctx.send(output)
             return [output, True]
 
-def setup(client):
-    client.add_cog(r47(client))
+async def setup(client):
+    await client.add_cog(r47(client))

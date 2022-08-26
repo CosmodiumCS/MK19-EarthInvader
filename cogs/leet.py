@@ -65,5 +65,5 @@ class leet(commands.Cog):
         # embed.add_field(value="**encode** or **e** - leet encode text", inline=False)
         # await ctx.send(embed=embed)
 
-def setup(client):
-    client.add_cog(leet(client))
+async def setup(client):
+    await client.add_cog(leet(client))
