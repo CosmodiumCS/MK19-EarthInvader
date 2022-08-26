@@ -3,9 +3,12 @@ import os
 from colorama import Fore
 from discord.ext import commands
 from dotenv import load_dotenv
+from daemonize import Daemonize
 import asyncio
 
 load_dotenv()
+
+pid = "/tmp/gokano_botd.pid"
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -33,7 +36,7 @@ async def main():
 
 
         @client.command()
-        async def sourcehelp(ctx):
+        async def sourcecode(ctx):
             embed = discord.Embed(title="__Source Code__", color=0x4287f5)
             embed.add_field(name="Source code available on github", value="https://github.com/Soulsender/Earth-Invader",
                             inline=False)
@@ -86,3 +89,5 @@ async def main():
         await client.start(str(os.getenv('TOKEN')))
 
 asyncio.run(main())
+daemon = Daemonize(app="gokano_botd", pid=pid, action=main)
+daemon.start()
