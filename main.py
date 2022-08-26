@@ -3,6 +3,8 @@ import os
 from colorama import Fore
 from discord.ext import commands
 
+intents = discord.Intents.default()
+intents.message_content = True
 client = commands.Bot(command_prefix="*", activity = discord.Game(name="I'm in fucking alpha don't expect much"))
 client.remove_command('help')
 
