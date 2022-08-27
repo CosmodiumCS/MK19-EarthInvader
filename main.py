@@ -16,6 +16,7 @@ client = commands.Bot(command_prefix="*", activity=discord.Game(name="I'm in fuc
                       intents=intents)
 client.remove_command('help')
 
+
 async def main():
     async with client:
 

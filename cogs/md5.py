@@ -28,7 +28,8 @@ class md5(commands.Cog):
             if hashlib.md5(text.encode()).hexdigest() == text:
                 return [text,True]
             else:
-                return "Eroor"
+                output = "Eroor"
+                return {output,True}
 
 async def setup(client):
     await client.add_cog(md5(client))

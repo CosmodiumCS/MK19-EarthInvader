@@ -1,6 +1,8 @@
 # IMPORTS
 from discord.ext import commands
 
+from cogs.mor import mor
+
 # INIT CLASS
 # should be the same name as the file
 class x(commands.Cog):
@@ -31,6 +33,7 @@ class x(commands.Cog):
         elif action == "decode" or "d":
 
             # do the cipher code here
+           
 
             output = "output of the cipher"
             # this sends the result
