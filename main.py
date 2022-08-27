@@ -16,6 +16,7 @@ client = commands.Bot(command_prefix="*", activity=discord.Game(name="I'm in fuc
                       intents=intents)
 client.remove_command('help')
 
+
 async def main():
     async with client:
 
@@ -66,6 +67,10 @@ async def main():
                                                 "Encoding and decoding with Rotation 13.", inline=False)
             embed.add_field(name="Binary", value="`bin {encode/e & decode/d} {\"string\"}`\n"
                                                  "Encoding and decoding with binary.", inline=False)
+            embed.add_field(name="MD5", value="`md5 {encode/e & decode/d} {\"string\"}`\n"
+                                                 "Encoding and decoding with md5.", inline=False)
+            embed.add_field(name="Morse", value="`mor {encode/e & decode/d} {\"string\"}`\n"
+                                                 "Encoding and decoding Morse code.", inline=False)                                     
 
             embed.set_footer(text='Created by Soulsender. See the wiki for documentation.')
             await ctx.send(embed=embed)
