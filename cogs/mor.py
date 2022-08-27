@@ -66,7 +66,7 @@ class mor(commands.Cog):
         print(__file__, ' Online')
 
     @commands.command()
-    async def hex(self, ctx, action, *, text):
+    async def mor(self, ctx, action, *, text):
 
         # encode morse
         if action == "encode" or action == "e":
@@ -82,5 +82,5 @@ class mor(commands.Cog):
             return [output,True]
 
 async def setup(client):
-    await client.add_cog(hex(client))
+    await client.add_cog(mor(client))
 

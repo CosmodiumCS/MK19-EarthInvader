@@ -13,7 +13,7 @@ class md5(commands.Cog):
         print(__file__, ' Online')
 
     @commands.command()
-    async def hex(self, ctx, action, *, text):
+    async def md5(self, ctx, action, *, text):
 
         # encode md5
         if action == "encode" or action == "e":
@@ -31,5 +31,5 @@ class md5(commands.Cog):
                 return "Eroor"
 
 async def setup(client):
-    await client.add_cog(hex(client))
+    await client.add_cog(md5(client))
 
