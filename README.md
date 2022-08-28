@@ -1,4 +1,4 @@
-# Earth-Invader v0.1
+# Earth-Invader v0.2
 Discord bot using the cryptography toolkit of [Codex](https://github.com/CosmodiumCS/Codex-Project)
 
 ## Usage
