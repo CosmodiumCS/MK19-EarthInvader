@@ -1,3 +1,6 @@
+#!/usr/bin/python3
+# Created by Soulsender
+
 import discord
 import os
 from colorama import Fore
