@@ -1,5 +1,6 @@
 # IMPORTS
 from discord.ext import commands
+import discord
 
 # INIT CLASS
 # should be the same name as the file
@@ -28,13 +29,20 @@ class x(commands.Cog):
             await ctx.send(output)
 
         # "decode" or "d" entered
-        elif action == "decode" or "d":
+        elif action == "decode" or action== "d":
 
             # do the cipher code here
+           
 
             output = "output of the cipher"
             # this sends the result
             await ctx.send(output)
+        else:
+            # HELP MENU
+            embed = discord.Embed(title="__x Command Menu__", color=0x2b2a2a)
+            embed.add_field(name="Commands", value="**decode** or **d** - decode x encoded text \n **encode** or **e** - x encode text \n example *x  ",
+             inline=False)
+            await ctx.send(embed=embed)
 
 # x should be the same name as the init class
 async def setup(client):
