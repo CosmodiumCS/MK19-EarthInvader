@@ -7,6 +7,7 @@ from colorama import Fore
 from discord.ext import commands
 from dotenv import load_dotenv
 import asyncio
+import logging
 
 load_dotenv()
 
@@ -15,7 +16,7 @@ intents.message_content = True
 client = commands.Bot(command_prefix="*", activity=discord.Game(name="I'm in fucking alpha don't expect much"),
                       intents=intents)
 client.remove_command('help')
-
+logging.basicConfig(level=logging.INFO)
 
 async def main():
     async with client:
@@ -35,14 +36,12 @@ async def main():
             print(Fore.BLUE, '\n'.join(guild.name for guild in client.guilds), Fore.RESET)
             print("===== MODULES LOADED =====", Fore.YELLOW)
 
-
         @client.command()
         async def sourcecode(ctx):
             embed = discord.Embed(title="__Source Code__", color=0x4287f5)
             embed.add_field(name="Source code available on github", value="https://github.com/Soulsender/Earth-Invader",
                             inline=False)
             await ctx.send(embed=embed)
-
 
         # cryptography help menu
         @client.command()
@@ -71,12 +70,11 @@ async def main():
                                                  "Encoding and decoding with md5.", inline=False)
             embed.add_field(name="Morse", value="`mor {encode/e & decode/d} {\"string\"}`\n `example = *mor e HEY` \n"
                                                  "Encoding and decoding Morse code.", inline=False)
-            embed.add_field(name="Octal", value="`Octal {encode/e & decode/d} {\"string\"}`\n `example = *b8 e 45 ` \n"
+            embed.add_field(name="Octal", value="`oct {encode/e & decode/d} {\"string\"}`\n `example = *oct e 45 ` \n"
                                                  "Encoding and decoding Octal code.", inline=False)                                       
 
             embed.set_footer(text='Created by Soulsender. See the wiki for documentation.')
             await ctx.send(embed=embed)
-
 
         # mimic
         @client.command()
@@ -84,7 +82,6 @@ async def main():
         async def m(ctx, *, question):
             await ctx.message.delete()
             await ctx.send(f'{question}')
-
 
         @client.command()
         async def servers(ctx):
