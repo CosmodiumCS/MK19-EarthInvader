@@ -24,7 +24,7 @@ class b64(commands.Cog):
             return [output, True]
 
         # "decode" or "d" entered
-        elif action == "decode" or "d":
+        elif action == "decode" or action=="d":
             text = text.encode('ascii')
             b64_bytes = base64.b64decode(text)
             output = b64_bytes.decode('ascii')

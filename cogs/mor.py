@@ -2,6 +2,7 @@
 # created by : Boulbalah lahcen
 
 from discord.ext import commands
+import discord
 
  
 
@@ -15,7 +16,7 @@ class mor(commands.Cog):
 
     @commands.command()
     async def mor(self, ctx, action, *, text):
-        cipher = ''
+        output = ''
         # Dictionary representing the morse code
         MORSE_CODE_DICT = { 'A':'.-', 'B':'-...',
                     'C':'-.-.', 'D':'-..', 'E':'.',
@@ -35,18 +36,16 @@ class mor(commands.Cog):
         # encode morse
         if action == "encode" or action == "e":
             # encode to morse
-            
             for letter in text:
                 if letter != ' ':
                     output += MORSE_CODE_DICT[letter] + ' '
                 else:
-                    output += ' '
-            # output = cipher                    
+                    output += ' '                   
             await ctx.send(output)
-            return [output, True]
+            #return [output, True]
 
         # decode mor
-        if action == "decode" or action == "d":
+        elif action == "decode" or action == "d":
             text += ' '
             output = ''
             citext = ''
@@ -79,6 +78,12 @@ class mor(commands.Cog):
             
             await ctx.send(output)
             return [output,True]
+        else:
+            # HELP MENU
+            embed = discord.Embed(title="__MORSE Command Menu__", color=0x2b2a2a)
+            embed.add_field(name="Commands", value="**decode** or **d** - decode morse encoded text \n **encode** or **e** - morse encode text \n example *mor e HEY ",
+             inline=False)
+            await ctx.send(embed=embed)
 
 async def setup(client):
     await client.add_cog(mor(client))
