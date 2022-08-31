@@ -61,7 +61,7 @@ async def main():
         # cryptography help menu
         @client.command()
         async def help(ctx):
-            embed = discord.Embed(title="Codex Bot", color=0x2b2a2a)
+            embed = discord.Embed(title="Codex Bot", color=0x00FFF9)
             embed.url = 'https://github.com/Soulsender/Codex-Bot'
             embed.set_author(name='Soulsender#3162', url='https://soulsender.github.io')
             embed.description = 'Basic Cryptography Commands'
