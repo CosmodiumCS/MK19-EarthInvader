@@ -37,11 +37,18 @@ class x(commands.Cog):
             output = "output of the cipher"
             # this sends the result
             await ctx.send(output)
-        else:
-            # HELP MENU
-            embed = discord.Embed(title="__x Command Menu__", color=0x2b2a2a)
-            embed.add_field(name="Commands", value="**decode** or **d** - decode x encoded text \n **encode** or **e** - x encode text \n example *x  ",
-             inline=False)
+
+    @x.error
+    async def on_command_error(self, ctx, error):
+        if isinstance(error, commands.MissingRequiredArgument):
+            embed = discord.Embed(title="SYNTAX ERROR", color=0xFE060A)
+            embed.add_field(name="Syntax:",
+                            value="`*x {encode/decode} {your text}`",
+                            inline=False)
+            embed.add_field(name="Example 1 - Encode longway:",
+                            value="`*x encode some text`", inline=False)
+            embed.add_field(name="Example 2 - Decode shortway:",
+                            value="`*x d SOME TEXT DECODED`", )
             await ctx.send(embed=embed)
 
 # x should be the same name as the init class

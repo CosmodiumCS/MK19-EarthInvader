@@ -1,4 +1,5 @@
 # IMPORTS
+import discord
 from discord.ext import commands
 
 # INIT CLASS
@@ -49,6 +50,19 @@ class cc(commands.Cog):
 
                 await ctx.send(output)
                 return [output, True]
+
+    @cc.error
+    async def on_command_error(self, ctx, error):
+        if isinstance(error, commands.MissingRequiredArgument):
+            embed = discord.Embed(title="SYNTAX ERROR", color=0xFE060A)
+            embed.add_field(name="Syntax:",
+                            value="`*cc {encode/decode} {key} {your text}`",
+                            inline=False)
+            embed.add_field(name="Example 1 - Encode longway:",
+                            value="`*cc encode 13 some text`", inline=False)
+            embed.add_field(name="Example 2 - Decode shortway:",
+                            value="`*cc d 13 fbzr grkg`", )
+            await ctx.send(embed=embed)
 
 async def setup(client):
     await client.add_cog(cc(client))

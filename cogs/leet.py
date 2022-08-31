@@ -2,7 +2,7 @@
 
 # leetspeek for [cryptex] project
 # created by : Fyzz
-
+import discord
 from discord.ext import commands
 
 class leet(commands.Cog):
@@ -59,11 +59,18 @@ class leet(commands.Cog):
             await ctx.send(output)
             return [output.capitalize(), True]
 
-        # # HELP MENU
-        # embed = discord.Embed(title="__leet Command Menu__", color=0x2b2a2a)
-        # embed.add_field(value="**decode** or **d** - decode leet encoded text", inline=False)
-        # embed.add_field(value="**encode** or **e** - leet encode text", inline=False)
-        # await ctx.send(embed=embed)
+    @leet.error
+    async def on_command_error(self, ctx, error):
+        if isinstance(error, commands.MissingRequiredArgument):
+            embed = discord.Embed(title="SYNTAX ERROR", color=0xFE060A)
+            embed.add_field(name="Syntax:",
+                            value="`*leet {encode/decode} {your text}`",
+                            inline=False)
+            embed.add_field(name="Example 1 - Encode longway:",
+                            value="`*leet encode some text`", inline=False)
+            embed.add_field(name="Example 2 - Decode shortway:",
+                            value="`*leet d 50m3 73x7`", )
+            await ctx.send(embed=embed)
 
 async def setup(client):
     await client.add_cog(leet(client))

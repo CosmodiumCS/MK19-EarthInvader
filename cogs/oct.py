@@ -4,7 +4,7 @@ from discord.ext import commands
 import discord
 
 
-class b8(commands.Cog):
+class oct(commands.Cog):
     def __init__(self, client):
         self.client = client
 
@@ -14,7 +14,7 @@ class b8(commands.Cog):
         print(__file__, ' Online')
 
     @commands.command()
-    async def b8(self, ctx, action, *, text):
+    async def oct(self, ctx, action, *, text):
 
         # "encode" or "e" entered
         if action == "encode" or action == "e":
@@ -25,7 +25,7 @@ class b8(commands.Cog):
             return [output,True]
 
         # "decode" or "d" entered
-        elif action == "decode" or action== "d":
+        elif action == "decode" or action == "d":
             output = 0
             base = 1
             while (int(text)):
@@ -35,12 +35,14 @@ class b8(commands.Cog):
                 base = base * 8
             # this sends the result
             await ctx.send(output)
-        else:
-            # HELP MENU
-            embed = discord.Embed(title="__Octal Command Menu__", color=0x2b2a2a)
-            embed.add_field(name="Commands", value="**decode** or **d** - decode oct encoded text \n **encode** or **e** - oct encode text \n example *b8 e 45  ",
-             inline=False)
+
+    @oct.error
+    async def on_command_error(self, ctx, error):
+        if isinstance(error):
+            embed = discord.Embed(title="WIP COMMAND", color=0xFE060A)
+            embed.add_field(name="ERROR - This command is WIP",
+                            inline=False)
             await ctx.send(embed=embed)
 
 async def setup(client):
-    await client.add_cog(b8(client))
+    await client.add_cog(oct(client))

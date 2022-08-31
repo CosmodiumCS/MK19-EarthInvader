@@ -42,7 +42,7 @@ class mor(commands.Cog):
                 else:
                     output += ' '                   
             await ctx.send(output)
-            #return [output, True]
+            return [output, True]
 
         # decode mor
         elif action == "decode" or action == "d":
@@ -83,6 +83,14 @@ class mor(commands.Cog):
             embed = discord.Embed(title="__MORSE Command Menu__", color=0x2b2a2a)
             embed.add_field(name="Commands", value="**decode** or **d** - decode morse encoded text \n **encode** or **e** - morse encode text \n example *mor e HEY ",
              inline=False)
+            await ctx.send(embed=embed)
+
+    @mor.error
+    async def on_command_error(self, ctx, error):
+        if isinstance(error):
+            embed = discord.Embed(title="WIP COMMAND", color=0xFE060A)
+            embed.add_field(name="ERROR - This command is WIP",
+                            inline=False)
             await ctx.send(embed=embed)
 
 async def setup(client):

@@ -36,12 +36,27 @@ async def main():
             print(Fore.BLUE, '\n'.join(guild.name for guild in client.guilds), Fore.RESET)
             print("===== MODULES LOADED =====", Fore.YELLOW)
 
+
+
         @client.command()
         async def sourcecode(ctx):
             embed = discord.Embed(title="__Source Code__", color=0x4287f5)
             embed.add_field(name="Source code available on github", value="https://github.com/Soulsender/Earth-Invader",
                             inline=False)
             await ctx.send(embed=embed)
+
+        # mimic
+        @client.command()
+        @commands.has_role('Bot Admin')  # Checks for Administrator rank.
+        async def m(ctx, *, question):
+            await ctx.message.delete()
+            await ctx.send(f'{question}')
+
+        @client.command()
+        async def servers(ctx):
+            servers = list(client.guilds)
+            await ctx.send(f"Connected on {str(len(servers))} servers:")
+            await ctx.send('\n'.join(guild.name for guild in client.guilds))
 
         # cryptography help menu
         @client.command()
@@ -66,28 +81,15 @@ async def main():
                                                 "Encoding and decoding with Rotation 13.", inline=False)
             embed.add_field(name="Binary", value="`bin {encode/e & decode/d} {\"string\"}`\n"
                                                  "Encoding and decoding with binary.", inline=False)
-            embed.add_field(name="Md5", value="`md5 {encode/e & decode/d} {\"string\"}`\n"
-                                                 "Encoding and decoding with md5.", inline=False)
-            embed.add_field(name="Morse", value="`mor {encode/e & decode/d} {\"string\"}`\n `example = *mor e HEY` \n"
-                                                 "Encoding and decoding Morse code.", inline=False)
-            embed.add_field(name="Octal", value="`oct {encode/e & decode/d} {\"string\"}`\n `example = *oct e 45 ` \n"
-                                                 "Encoding and decoding Octal code.", inline=False)                                       
+            # embed.add_field(name="Md5", value="`md5 {encode/e & decode/d} {\"string\"}`\n"
+            #                                      "Encoding and decoding with md5.", inline=False)
+            # embed.add_field(name="Morse", value="`mor {encode/e & decode/d} {\"string\"}`\n `example = *mor e HEY` \n"
+            #                                      "Encoding and decoding Morse code.", inline=False)
+            # embed.add_field(name="Octal", value="`oct {encode/e & decode/d} {\"string\"}`\n `example = *oct e 45 ` \n"
+            #                                      "Encoding and decoding Octal code.", inline=False)
 
             embed.set_footer(text='Created by Soulsender. See the wiki for documentation.')
             await ctx.send(embed=embed)
-
-        # mimic
-        @client.command()
-        @commands.has_role('Bot Admin')  # Checks for Administrator rank.
-        async def m(ctx, *, question):
-            await ctx.message.delete()
-            await ctx.send(f'{question}')
-
-        @client.command()
-        async def servers(ctx):
-            servers = list(client.guilds)
-            await ctx.send(f"Connected on {str(len(servers))} servers:")
-            await ctx.send('\n'.join(guild.name for guild in client.guilds))
 
         await load_extensions()
         await client.start(str(os.getenv('TOKEN')))

@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # New Rot47 cipher for the the codex project
 # created by : C0SM0 | Fyzz
-
+import discord
 from discord.ext import commands
 
 class r13(commands.Cog):
@@ -52,6 +52,19 @@ class r13(commands.Cog):
 
             await ctx.send(output)
             return [output, True]
+
+    @r13.error
+    async def on_command_error(self, ctx, error):
+        if isinstance(error, commands.MissingRequiredArgument):
+            embed = discord.Embed(title="SYNTAX ERROR", color=0xFE060A)
+            embed.add_field(name="Syntax:",
+                            value="`*r13 {encode/decode} {your text}`",
+                            inline=False)
+            embed.add_field(name="Example 1 - Encode longway:",
+                            value="`*r13 encode some text`", inline=False)
+            embed.add_field(name="Example 2 - Decode shortway:",
+                            value="`*r13 d fbzr grkg`", )
+            await ctx.send(embed=embed)
 
 async def setup(client):
     await client.add_cog(r13(client))

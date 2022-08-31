@@ -2,7 +2,7 @@
 
 # created by : Fyzz
 # New Arg Parse
-
+import discord
 from discord.ext import commands
 
 class bin(commands.Cog):
@@ -32,6 +32,19 @@ class bin(commands.Cog):
 
             await ctx.send(output)
             return [output, True]
+
+    @bin.error
+    async def on_command_error(self, ctx, error):
+        if isinstance(error, commands.MissingRequiredArgument):
+            embed = discord.Embed(title="SYNTAX ERROR", color=0xFE060A)
+            embed.add_field(name="Syntax:",
+                            value="`*bin {encode/decode} {your text}`",
+                            inline=False)
+            embed.add_field(name="Example 1 - Encode longway:",
+                            value="`*bin encode some text`", inline=False)
+            embed.add_field(name="Example 2 - Decode shortway:",
+                            value="`*bin d 1110100 1100101 1111000 1110100`", )
+            await ctx.send(embed=embed)
 
 async def setup(client):
     await client.add_cog(bin(client))

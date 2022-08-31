@@ -29,13 +29,20 @@ class md5(commands.Cog):
             if hashlib.md5(text.encode()).hexdigest() == text:
                 return [text,True]
             else:
-                output = "Eroor"
+                output = "Error"
                 return {output,True}
-        else:
-            # HELP MENU
-            embed = discord.Embed(title="__MD5 Command Menu__", color=0x2b2a2a)
-            embed.add_field(name="Commands", value="**decode** or **d** - decode md5 encode text \n **encode** or **e** - md5 encode text",
-             inline=False)
+
+    @md5.error
+    async def on_command_error(self, ctx, error):
+        if isinstance(error, commands.MissingRequiredArgument):
+            embed = discord.Embed(title="SYNTAX ERROR", color=0xFE060A)
+            embed.add_field(name="Syntax:",
+                            value="`*md5 {encode/decode} {your text}`",
+                            inline=False)
+            embed.add_field(name="Example 1 - Encode longway:",
+                            value="`*md5 encode some text`", inline=False)
+            embed.add_field(name="Example 2 - Decode shortway:",
+                            value="`*md5 d 552e21cd4cd9918678e3c1a0df491bc3`", )
             await ctx.send(embed=embed)
 
 async def setup(client):

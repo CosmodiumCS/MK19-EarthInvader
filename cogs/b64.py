@@ -15,6 +15,7 @@ class b64(commands.Cog):
 
     @commands.command()
     async def b64(self, ctx, action, *, text):
+
         # "encode" or "e" entered
         if action == "encode" or action == "e":
             text = text.encode('ascii')
@@ -31,10 +32,17 @@ class b64(commands.Cog):
             await ctx.send(output)
             return [output, True]
 
-        else:
-            # HELP MENU
-            embed = discord.Embed(title="__base64 Command Menu__", color=0x2b2a2a)
-            embed.add_field(name="Commands", value="**decode** or **d** - decode base64 encoded text \n **encode** or **e** - base64 encode text", inline=False)
+    @b64.error
+    async def on_command_error(self, ctx, error):
+        if isinstance(error, commands.MissingRequiredArgument):
+            embed = discord.Embed(title="SYNTAX ERROR", color=0xFE060A)
+            embed.add_field(name="Syntax:",
+                            value="`*b64 {encode/decode} {your text}`",
+                            inline=False)
+            embed.add_field(name="Example 1 - Encode longway:",
+                            value="`*b64 encode some text`", inline=False)
+            embed.add_field(name="Example 2 - Decode shortway:",
+                            value="`*b64 d c29tZSB0ZXh0`", )
             await ctx.send(embed=embed)
 
 async def setup(client):
