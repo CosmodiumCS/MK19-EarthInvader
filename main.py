@@ -53,6 +53,7 @@ async def main():
             await ctx.send(f'{question}')
 
         @client.command()
+        @commands.has_role('Bot Admin')
         async def servers(ctx):
             servers = list(client.guilds)
             await ctx.send(f"Connected on {str(len(servers))} servers:")
