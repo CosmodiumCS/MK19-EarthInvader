@@ -1,14 +1,14 @@
 # Earth-Invader v0.2
-Discord bot using the cryptography toolkit of [Codex](https://github.com/CosmodiumCS/Codex-Project)
+Discord bot using the cryptography toolkit of [SkeletonKey](https://github.com/CosmodiumCS/SkeletonKey)
 
 ## Usage
-Usage continues the trend of the Cryptex suite often. See the help menu by simply using `*help`.
+Usage continues the trend of the SkeletonKey suite often. See the help menu by simply using `*help`.
 
 ## Setting up yourself
 Should you want to use the code yourself, you need only replace the Discord token in `main.py`, and generate an invite link of your own.
 
 #### Token
-You will need to add your own token in `main.py` under `client.run()`. It is reccommended that it is stored in a `.env` file for better security. This `.env` file should be located in the root of the project directory. Simply add your token in the file as:
+You will need to add your own token in `main.py` under `client.run()`. It is recommended that it is stored in a `.env` file for better security. This `.env` file should be located in the root of the project directory. Simply add your token in the file as:
 
 ```
 TOKEN=your token here
