@@ -84,10 +84,10 @@ async def main():
                                                  "Encoding and decoding with binary.", inline=False)
             # embed.add_field(name="Md5", value="`md5 {encode/e & decode/d} {\"string\"}`\n"
             #                                      "Encoding and decoding with md5.", inline=False)
-            # embed.add_field(name="Morse", value="`mor {encode/e & decode/d} {\"string\"}`\n `example = *mor e HEY` \n"
-            #                                      "Encoding and decoding Morse code.", inline=False)
-            # embed.add_field(name="Octal", value="`oct {encode/e & decode/d} {\"string\"}`\n `example = *oct e 45 ` \n"
-            #                                      "Encoding and decoding Octal code.", inline=False)
+            embed.add_field(name="Morse", value="`mor {encode/e & decode/d} {\"string\"}`\n `example = *mor e hey` \n"
+                                                 "Encoding and decoding Morse code.", inline=False)
+            embed.add_field(name="Octal", value="`b8 {encode/e & decode/d} {\"integer\"}`\n `example = *b8 e 45 ` \n"
+                                                 "Encoding and decoding Octal code.", inline=False)
 
             embed.set_footer(text='Created by Soulsender. See the wiki for documentation.')
             await ctx.send(embed=embed)

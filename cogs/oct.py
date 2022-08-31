@@ -3,8 +3,7 @@
 from discord.ext import commands
 import discord
 
-
-class oct(commands.Cog):
+class b8(commands.Cog):
     def __init__(self, client):
         self.client = client
 
@@ -14,7 +13,7 @@ class oct(commands.Cog):
         print(__file__, ' Online')
 
     @commands.command()
-    async def oct(self, ctx, action, *, text):
+    async def b8(self, ctx, action, *, text):
 
         # "encode" or "e" entered
         if action == "encode" or action == "e":
@@ -36,13 +35,18 @@ class oct(commands.Cog):
             # this sends the result
             await ctx.send(output)
 
-    @oct.error
+    @b8.error
     async def on_command_error(self, ctx, error):
-        if isinstance(error):
-            embed = discord.Embed(title="WIP COMMAND", color=0xFE060A)
-            embed.add_field(name="ERROR - This command is WIP",
+        if isinstance(error, commands.MissingRequiredArgument):
+            embed = discord.Embed(title="SYNTAX ERROR", color=0xFE060A)
+            embed.add_field(name="Syntax:",
+                            value="`*b8 {encode/decode} {number}`",
                             inline=False)
+            embed.add_field(name="Example 1 - Encode longway:",
+                            value="`*b8 encode 45`", inline=False)
+            embed.add_field(name="Example 2 - Decode shortway:",
+                            value="`*b8 d 55`", )
             await ctx.send(embed=embed)
 
 async def setup(client):
-    await client.add_cog(oct(client))
+    await client.add_cog(b8(client))
