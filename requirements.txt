@@ -2,5 +2,5 @@ Cryptography
 colorama
 googletrans==3.1.0a0
 python-dotenv~=0.20.0
-discord>=2.0.0
+nextcord>=2.0.0
 asyncio

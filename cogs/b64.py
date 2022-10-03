@@ -1,49 +1,52 @@
-# base64 cipher [encoding] package for the the codex project
-
+# base64 [encoding] package for the the Skeleton Key project
 # created by : Fyzz
-import discord
-from discord.ext import commands
-import base64
 
+import nextcord
+from nextcord.ext import commands
+import base64
+from main import guild_id
+
+# match file name with classname
 class b64(commands.Cog):
-    def __init__(self, client):
+    def __init__(self, client: commands.Bot):
         self.client = client
 
     @commands.Cog.listener()
     async def on_ready(self):
-        print(__file__, ' Online')
+        print(f"B64 - Loaded")
 
-    @commands.command()
-    async def b64(self, ctx, action, *, text):
-
+    @nextcord.slash_command(description="Base64 Encode / Decode", guild_ids=[guild_id])
+    async def b64(self, interaction: nextcord.Interaction, action, text):
+        message = ""
         # "encode" or "e" entered
-        if action == "encode" or action == "e":
+        if action == "encode" or action == 'e':
             text = text.encode('ascii')
             b64_bytes = base64.b64encode(text)
             output = b64_bytes.decode('ascii')
-            await ctx.send(output)
-            return [output, True]
+            message = f"**Encoded:**\n{output}"
 
         # "decode" or "d" entered
-        elif action == "decode" or action=="d":
+        if action == "decode" or action == 'd':
             text = text.encode('ascii')
             b64_bytes = base64.b64decode(text)
             output = b64_bytes.decode('ascii')
-            await ctx.send(output)
-            return [output, True]
+            message = f"**Decoded:**\n{output}"
 
+        await interaction.response.send_message(message)
+    # Handle Errors
     @b64.error
-    async def on_command_error(self, ctx, error):
-        if isinstance(error, commands.MissingRequiredArgument):
-            embed = discord.Embed(title="SYNTAX ERROR", color=0xFE060A)
-            embed.add_field(name="Syntax:",
-                            value="`*b64 {encode/decode} {your text}`",
-                            inline=False)
-            embed.add_field(name="Example 1 - Encode longway:",
-                            value="`*b64 encode some text`", inline=False)
-            embed.add_field(name="Example 2 - Decode shortway:",
-                            value="`*b64 d c29tZSB0ZXh0`", )
-            await ctx.send(embed=embed)
+    async def on_command_error(self, interaction: nextcord.Interaction, error):
+        message = """
+**Syntax**
+> Usage - `/b64`  `<encode/decode>`  `<text>`
 
-async def setup(client):
-    await client.add_cog(b64(client))
+**Examples:**
+> Shorthand: `/b64`  `e`  `some text to encode`
+> Longhand: `/b64`  `decode`  `c29tZSB0ZXh0`
+"""
+        embed = nextcord.Embed(title="SYNTAX ERROR",color=0xFE060A, description=message)
+        await interaction.channel.send(embed=embed)
+
+
+def setup(client) -> None:
+    client.add_cog(b64(client))

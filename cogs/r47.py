@@ -1,22 +1,25 @@
-#!/usr/bin/python
-# New Rot47 cipher for the the codex project
+# Rot47 [encoding] package for the the Skeleton Key project
 # created by : Fyzz
-import discord
-from discord.ext import commands
 
+import nextcord
+from nextcord.ext import commands
+from main import guild_id
+import base64
+
+# match file name with classname
 class r47(commands.Cog):
-    def __init__(self, client):
+    def __init__(self, client: commands.Bot):
         self.client = client
 
     @commands.Cog.listener()
     async def on_ready(self):
-        print(__file__, ' Online')
+        print(f"R47 - Loaded")
 
-    @commands.command()
-    async def r47(self, ctx, action, *, text):
-
-        # encode r47
-        if action == "encode" or action == "e":
+    @nextcord.slash_command(description="Rot46 Encode / Decode", guild_ids=[guild_id])
+    async def r47(self, interaction: nextcord.Interaction, action, text):
+        message = ""
+        # "encode" or "e" entered
+        if action == "encode" or action == 'e':
             output = ''
 
             for index in text:
@@ -25,12 +28,10 @@ class r47(commands.Cog):
                     output += chr(33 + ((encoded + 14) % 94))
                 else:
                     output += index
-            await ctx.send(output)
-            return [output, True]
+            message = f"**Encoded:**\n{output}"
 
-
-        # decode r47
-        if action == "decode" or action == "d":
+        # "decode" or "d" entered
+        if action == "decode" or action == 'd':
             output = ''
 
             for index in text:
@@ -39,21 +40,23 @@ class r47(commands.Cog):
                     output += chr(33 + ((encoded + 14) % 94))
                 else:
                     output += index
-            await ctx.send(output)
-            return [output, True]
+            message = f"**Decoded:**\n{output}"
 
+        await interaction.response.send_message(message)
+    # Handle Errors
     @r47.error
-    async def on_command_error(self, ctx, error):
-        if isinstance(error, commands.MissingRequiredArgument):
-            embed = discord.Embed(title="SYNTAX ERROR", color=0xFE060A)
-            embed.add_field(name="Syntax:",
-                            value="`*r47 {encode/decode} {your text}`",
-                            inline=False)
-            embed.add_field(name="Example 1 - Encode longway:",
-                            value="`*r47 encode some text`", inline=False)
-            embed.add_field(name="Example 2 - Decode shortway:",
-                            value="`*r47 d D@>6 E6IE`", )
-            await ctx.send(embed=embed)
+    async def on_command_error(self, interaction: nextcord.Interaction, error):
+        message = """
+**Syntax**
+> Usage - `/r47`  `<encode/decode>`  `<text>`
 
-async def setup(client):
-    await client.add_cog(r47(client))
+**Examples:**
+> Shorthand: `/r47`  `e`  `some text to encode`
+> Longhand: `/r47`  `decode`  `D@>6 E6IE`
+"""
+        embed = nextcord.Embed(title="SYNTAX ERROR",color=0xFE060A, description=message)
+        await interaction.channel.send(embed=embed)
+
+
+def setup(client) -> None:
+    client.add_cog(r47(client))

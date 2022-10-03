@@ -1,46 +1,47 @@
-#!/usr/bin/python
-# reverse cipher package for the the codex project
-# created by : C0SM0
-import discord
-from discord.ext import commands
+# hex [encoding] package for the the Skeleton Key project
+# created by : Fyzz
 
+import nextcord
+from nextcord.ext import commands
+from main import guild_id
+
+# match file name with classname
 class hex(commands.Cog):
-    def __init__(self, client):
+    def __init__(self, client: commands.Bot):
         self.client = client
 
     @commands.Cog.listener()
     async def on_ready(self):
-        print(__file__, ' Online')
+        print(f"Hex - Loaded")
 
-    @commands.command()
-    async def hex(self, ctx, action, *, text):
-
-        # encode hex
-        if action == "encode" or action == "e":
-            # encode to hex
+    @nextcord.slash_command(description="Hex Encode / Decode", guild_ids=[guild_id])
+    async def hex(self, interaction: nextcord.Interaction, action, text):
+        message = ""
+        # "encode" or "e" entered
+        if action == "encode" or action == 'e':
             output = text.encode("utf-8").hex()
-            await ctx.send(output)
-            return [output, True]
+            message = f"**Encoded:**\n{output}"
 
-        # decode hex
-        if action == "decode" or action == "d":
-            # decode to hex
+        # "decode" or "d" entered
+        if action == "decode" or action == 'd':
             output = bytes.fromhex(text).decode("utf-8")
-            await ctx.send(output)
-            return [output, True]
+            message = f"**Decoded:**\n{output}"
 
+        await interaction.response.send_message(message)
+    # Handle Errors
     @hex.error
-    async def on_command_error(self, ctx, error):
-        if isinstance(error, commands.MissingRequiredArgument):
-            embed = discord.Embed(title="SYNTAX ERROR", color=0xFE060A)
-            embed.add_field(name="Syntax:",
-                            value="`*hex {encode/decode} {your text}`",
-                            inline=False)
-            embed.add_field(name="Example 1 - Encode longway:",
-                            value="`*hex encode some text`", inline=False)
-            embed.add_field(name="Example 2 - Decode shortway:",
-                            value="`*hex d 736f6d652074657874`", )
-            await ctx.send(embed=embed)
+    async def on_command_error(self, interaction: nextcord.Interaction, error):
+        message = """
+**Syntax**
+> Usage - `/hex`  `<encode/decode>`  `<text>`
 
-async def setup(client):
-    await client.add_cog(hex(client))
+**Examples:**
+> Shorthand: `/hex`  `e`  `some text to encode`
+> Longhand: `/hex`  `decode`  `736f6d652074657874`
+"""
+        embed = nextcord.Embed(title="SYNTAX ERROR",color=0xFE060A, description=message)
+        await interaction.channel.send(embed=embed)
+
+
+def setup(client) -> None:
+    client.add_cog(hex(client))
