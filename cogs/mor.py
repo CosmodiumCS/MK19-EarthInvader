@@ -1,60 +1,61 @@
-# !/usr/bin/python
+# mor [encoding] package for the the Skeleton Key project
 # created by : Boulbalah lahcen
-import discord
-from discord.ext import commands
+
+import nextcord
+from nextcord.ext import commands
+from main import guild_id
+
+MORSE_CODE_DICT = {'A': '.-', 'B': '-...',
+                   'C': '-.-.', 'D': '-..', 'E': '.',
+                   'F': '..-.', 'G': '--.', 'H': '....',
+                   'I': '..', 'J': '.---', 'K': '-.-',
+                   'L': '.-..', 'M': '--', 'N': '-.',
+                   'O': '---', 'P': '.--.', 'Q': '--.-',
+                   'R': '.-.', 'S': '...', 'T': '-',
+                   'U': '..-', 'V': '...-', 'W': '.--',
+                   'X': '-..-', 'Y': '-.--', 'Z': '--..',
+                   '1': '.----', '2': '..---', '3': '...--',
+                   '4': '....-', '5': '.....', '6': '-....',
+                   '7': '--...', '8': '---..', '9': '----.',
+                   '0': '-----', ', ': '--..--', '.': '.-.-.-',
+                   '?': '..--..', '/': '-..-.', '-': '-....-',
+                   '(': '-.--.', ')': '-.--.-', 'a': '.-', 'b': '-...',
+                   'c': '-.-.', 'd': '-..', 'e': '.',
+                   'f': '..-.', 'g': '--.', 'h': '....',
+                   'i': '..', 'j': '.---', 'k': '-.-',
+                   'l': '.-..', 'm': '--', 'n': '-.',
+                   'o': '---', 'p': '.--.', 'q': '--.-',
+                   'r': '.-.', 's': '...', 't': '-',
+                   'u': '..-', 'v': '...-', 'w': '.--',
+                   'x': '-..-', 'y': '-.--', 'z': '--..'}
+
+# match file name with classname
 
 
 class mor(commands.Cog):
-    def __init__(self, client):
+    def __init__(self, client: commands.Bot):
         self.client = client
 
     @commands.Cog.listener()
     async def on_ready(self):
-        print(__file__, ' Online')
+        print(f"Mor - Loaded")
 
-    @commands.command()
-    async def mor(self, ctx, action, *, text):
-        output = ''
-        # Dictionary representing the morse code
-        # yes I realise this is hacky
-        MORSE_CODE_DICT = {'A': '.-', 'B': '-...',
-                           'C': '-.-.', 'D': '-..', 'E': '.',
-                           'F': '..-.', 'G': '--.', 'H': '....',
-                           'I': '..', 'J': '.---', 'K': '-.-',
-                           'L': '.-..', 'M': '--', 'N': '-.',
-                           'O': '---', 'P': '.--.', 'Q': '--.-',
-                           'R': '.-.', 'S': '...', 'T': '-',
-                           'U': '..-', 'V': '...-', 'W': '.--',
-                           'X': '-..-', 'Y': '-.--', 'Z': '--..',
-                           '1': '.----', '2': '..---', '3': '...--',
-                           '4': '....-', '5': '.....', '6': '-....',
-                           '7': '--...', '8': '---..', '9': '----.',
-                           '0': '-----', ', ': '--..--', '.': '.-.-.-',
-                           '?': '..--..', '/': '-..-.', '-': '-....-',
-                           '(': '-.--.', ')': '-.--.-', 'a': '.-', 'b': '-...',
-                           'c': '-.-.', 'd': '-..', 'e': '.',
-                           'f': '..-.', 'g': '--.', 'h': '....',
-                           'i': '..', 'j': '.---', 'k': '-.-',
-                           'l': '.-..', 'm': '--', 'n': '-.',
-                           'o': '---', 'p': '.--.', 'q': '--.-',
-                           'r': '.-.', 's': '...', 't': '-',
-                           'u': '..-', 'v': '...-', 'w': '.--',
-                           'x': '-..-', 'y': '-.--', 'z': '--..'}
-        # encode morse
-        if action == "encode" or action == "e":
-            # encode to morse
-
+    @nextcord.slash_command(description="Morse Encode / Decode", guild_ids=[guild_id])
+    async def mor(self, interaction: nextcord.Interaction, action, text):
+        message = ""
+        # "encode" or "e" entered
+        if action == "encode" or action == 'e':
+            output = ""
             for letter in text:
                 if letter != ' ':
                     output += MORSE_CODE_DICT[letter] + ' '
                 else:
                     output += ' '
-            # output = cipher                    
-            await ctx.send(output)
-            return [output, True]
 
-        # decode mor
-        if action == "decode" or action == "d":
+            message = f"**Encoded:**\n{output}"
+
+        # "decode" or "d" entered
+        if action == "decode" or action == 'd':
             text += ' '
             output = ''
             citext = ''
@@ -84,23 +85,25 @@ class mor(commands.Cog):
                         output += list(MORSE_CODE_DICT.keys())[list(MORSE_CODE_DICT
                                                                     .values()).index(citext)]
                         citext = ''
+            message = f"**Decoded:**\n{output}"
 
-            await ctx.send(output)
-            return [output, True]
+        await interaction.response.send_message(message)
+    # Handle Errors
 
-        @mor.error
-        async def on_command_error(self, ctx, error):
-            if isinstance(error, commands.MissingRequiredArgument):
-                embed = discord.Embed(title="SYNTAX ERROR", color=0xFE060A)
-                embed.add_field(name="Syntax:",
-                                value="`*mor {encode/decode} {your text}`",
-                                inline=False)
-                embed.add_field(name="Example 1 - Encode longway:",
-                                value="`*mor encode some text`", inline=False)
-                embed.add_field(name="Example 2 - Decode shortway:",
-                                value="`*mor d ... --- -- .  - . -..- -`", )
-                await ctx.send(embed=embed)
+    @mor.error
+    async def on_command_error(self, interaction: nextcord.Interaction, error):
+        message = """
+**Syntax**
+> Usage - `/mor`  `<encode/decode>`  `<text>`
+
+**Examples:**
+> Shorthand: `/mor`  `e`  `some text to encode`
+> Longhand: `/mor`  `decode`  `... --- -- .  - . -..- -`
+"""
+        embed = nextcord.Embed(title="SYNTAX ERROR",
+                               color=0xFE060A, description=message)
+        await interaction.channel.send(embed=embed)
 
 
-async def setup(client):
-    await client.add_cog(mor(client))
+def setup(client) -> None:
+    client.add_cog(mor(client))

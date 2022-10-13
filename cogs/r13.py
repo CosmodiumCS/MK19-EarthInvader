@@ -1,24 +1,27 @@
-#!/usr/bin/python
-# New Rot47 cipher for the the codex project
-# created by : C0SM0 | Fyzz
-import discord
-from discord.ext import commands
+# r13 [encoding] package for the the Skeleton Key project
+# created by : Fyzz
 
+import nextcord
+from nextcord.ext import commands
+from main import guild_id
+
+# match file name with classname
 class r13(commands.Cog):
-    def __init__(self, client):
+    def __init__(self, client: commands.Bot):
         self.client = client
 
     @commands.Cog.listener()
     async def on_ready(self):
-        print(__file__, ' Online')
+        print(f"R13 - Loaded")
 
-    @commands.command()
-    async def r13(self, ctx, action, *, text):
+    @nextcord.slash_command(description="Rot13 Encode / Decode", guild_ids=[guild_id])
+    async def r13(self, interaction: nextcord.Interaction, action,text):
+        message = ""
+        key = 13
 
-        # encode r13
-        if action == "encode" or action == "e":
+        # "encode" or "e" entered
+        if action == "encode" or action == 'e':
             output = ''
-            key = 13
             exclude = "\n\t .?!,/\\<>|[]{}@#$%^&*()-_=+`~:;\"'0123456789"
 
             # encryption process
@@ -27,17 +30,16 @@ class r13(commands.Cog):
                     if character in exclude:
                         output += character
                     elif character.isupper():
-                        output += chr((ord(character) + int(key) - 65) % 26 + 65)
+                        output += chr((ord(character) +
+                                      int(key) - 65) % 26 + 65)
                     else:
-                        output += chr((ord(character) + int(key) - 97) % 26 + 97)
-            await ctx.send(output)
-            return [output, True]
+                        output += chr((ord(character) +
+                                      int(key) - 97) % 26 + 97)
+            message = f"**Encoded:**\n{output}"
 
-
-        # decode r13
-        if action == "decode" or action == "d":
+        # "decode" or "d" entered
+        if action == "decode" or action == 'd':
             output = ''
-            key = 13
             exclude = "\n\t .?!,/\\<>|[]{}@#$%^&*()-_=+`~:;\"'0123456789"
 
             # decryption process
@@ -46,25 +48,30 @@ class r13(commands.Cog):
                     if character in exclude:
                         output += character
                     elif character.isupper():
-                        output += chr((ord(character) - int(key) - 65) % 26 + 65)
+                        output += chr((ord(character) -
+                                      int(key) - 65) % 26 + 65)
                     else:
-                        output += chr((ord(character) - int(key) - 97) % 26 + 97)
+                        output += chr((ord(character) -
+                                      int(key) - 97) % 26 + 97)
+            message = f"**Decoded:**\n{output}"
 
-            await ctx.send(output)
-            return [output, True]
+        await interaction.response.send_message(message)
+    # Handle Errors
 
     @r13.error
-    async def on_command_error(self, ctx, error):
-        if isinstance(error, commands.MissingRequiredArgument):
-            embed = discord.Embed(title="SYNTAX ERROR", color=0xFE060A)
-            embed.add_field(name="Syntax:",
-                            value="`*r13 {encode/decode} {your text}`",
-                            inline=False)
-            embed.add_field(name="Example 1 - Encode longway:",
-                            value="`*r13 encode some text`", inline=False)
-            embed.add_field(name="Example 2 - Decode shortway:",
-                            value="`*r13 d fbzr grkg`", )
-            await ctx.send(embed=embed)
+    async def on_command_error(self, interaction: nextcord.Interaction, error):
+        message = """
+**Syntax**
+> Usage - `/r13`  `<encode/decode>`  `<text>`
 
-async def setup(client):
-    await client.add_cog(r13(client))
+**Examples:**
+> Shorthand: `/r13`  `e`  `some text to encode`
+> Longhand: `/r13`  `decode`  `fbzr grkg`
+"""
+        embed = nextcord.Embed(title="SYNTAX ERROR",
+                               color=0xFE060A, description=message)
+        await interaction.channel.send(embed=embed)
+
+
+def setup(client) -> None:
+    client.add_cog(r13(client))

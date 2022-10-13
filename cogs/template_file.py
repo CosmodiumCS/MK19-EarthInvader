@@ -1,56 +1,62 @@
-# IMPORTS
-from discord.ext import commands
-import discord
+# template
 
-# INIT CLASS
-# should be the same name as the file
-class x(commands.Cog):
-    def __init__(self, client):
+import nextcord
+from nextcord.ext import commands
+from main import guild_id
+
+# match file name with classname
+class template_file(commands.Cog):
+    def __init__(self, client: commands.Bot):
         self.client = client
 
-    # callback to shell showing that the cog is loaded
     @commands.Cog.listener()
     async def on_ready(self):
-        #print('cog name Online')
-        print(__file__, ' Online')
+        print(f"template_file - Loaded")
 
-    # the actual command
-    # x should be the name of the command which should optimally be the same name as the file
-    @commands.command()
-    async def x(self, ctx, action, *, text):
+    @nextcord.slash_command(description="Template Encode / Decode", guild_ids=[guild_id])
+    async def template_file(self, interaction: nextcord.Interaction, action, text):
 
+        # If not enc/dec this stays blank and throws error
+        message = ""
         # "encode" or "e" entered
-        if action == "encode" or action == "e":
+        if action == "encode" or action == 'e':
+            output = ""
 
-            # do the cipher code here
 
-            output = "output of the cipher"
-            # this sends the result
-            await ctx.send(output)
+            # Encoding in here to output
+
+
+            message = f"**Encoded:**\n{output}"
 
         # "decode" or "d" entered
-        elif action == "decode" or action== "d":
+        if action == "decode" or action == 'd':
+            output = ""
 
-            # do the cipher code here
-           
 
-            output = "output of the cipher"
-            # this sends the result
-            await ctx.send(output)
+            # Decoding in here to output
 
-    @x.error
-    async def on_command_error(self, ctx, error):
-        if isinstance(error, commands.MissingRequiredArgument):
-            embed = discord.Embed(title="SYNTAX ERROR", color=0xFE060A)
-            embed.add_field(name="Syntax:",
-                            value="`*x {encode/decode} {your text}`",
-                            inline=False)
-            embed.add_field(name="Example 1 - Encode longway:",
-                            value="`*x encode some text`", inline=False)
-            embed.add_field(name="Example 2 - Decode shortway:",
-                            value="`*x d SOME TEXT DECODED`", )
-            await ctx.send(embed=embed)
 
-# x should be the same name as the init class
-async def setup(client):
-    await client.add_cog(x(client))
+            message = f"**Decoded:**\n{output}"
+
+        await interaction.response.send_message(message)
+
+    # Handle Errors
+    @template_file.error
+    async def on_command_error(self, interaction: nextcord.Interaction, error):
+
+        # Help Menu
+        message = """
+**Syntax**
+> Usage - `/template_file`  `<encode/decode>`  `<text>`
+
+**Examples:**
+> Shorthand: `/template_file`  `e`  `some text to encode`
+> Longhand: `/template_file`  `decode`  `c29tZSB0ZXh0`
+"""
+        embed = nextcord.Embed(title="SYNTAX ERROR",
+                               color=0xFE060A, description=message)
+        await interaction.channel.send(embed=embed)
+
+
+def setup(client) -> None:
+    client.add_cog(template_file(client))

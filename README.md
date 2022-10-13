@@ -2,17 +2,19 @@
 Discord bot using the cryptography toolkit of [SkeletonKey](https://github.com/CosmodiumCS/SkeletonKey)
 
 ## Usage
-Usage continues the trend of the SkeletonKey suite often. See the help menu by simply using `*help`.
+Usage continues the trend of the SkeletonKey suite often. See the help menu by simply using `/help`.
 
 ## Setting up yourself
 Should you want to use the code yourself, you need only replace the Discord token in `main.py`, and generate an invite link of your own.
 
-#### Token
-You will need to add your own token in `main.py` under `client.run()`. It is recommended that it is stored in a `.env` file for better security. This `.env` file should be located in the root of the project directory. Simply add your token in the file as:
+#### Token & Guild ID
+You will need to add your own token and guild id in `main.py` under `client.run()`. It is recommended that it is stored in a `.env` file for better security. Rename `.env_example` in the root directory and add your own credentials as follows:
 
 ```
 TOKEN=your token here
+GUILD_ID=your guild id
 ```
+
 > WARNING: This token controls your entire bot. **It is very important you keep it hidden.**
 
 #### Discord Developer 

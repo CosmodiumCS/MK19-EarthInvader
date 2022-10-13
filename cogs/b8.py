@@ -1,51 +1,53 @@
-# md5 [encoding] package for the the Skeleton Key project
+# b8 [encoding] package for the the Skeleton Key project
 # created by : Boulbalah lahcen
 
 import nextcord
 from nextcord.ext import commands
 from main import guild_id
-import hashlib
-
 
 # match file name with classname
-class md5(commands.Cog):
+class b8(commands.Cog):
     def __init__(self, client: commands.Bot):
         self.client = client
 
     @commands.Cog.listener()
     async def on_ready(self):
-        print(f"MD5 - Loaded")
+        print(f"B8 - Loaded")
 
-    @nextcord.slash_command(description="MD5 Encode / Decode", guild_ids=[guild_id])
-    async def md5(self, interaction: nextcord.Interaction, action, text):
+    @nextcord.slash_command(description="Base8 Encode / Decode", guild_ids=[guild_id])
+    async def b8(self, interaction: nextcord.Interaction, action, number):
         message = ""
         # "encode" or "e" entered
         if action == "encode" or action == 'e':
-            output = hashlib.md5(text.encode()).hexdigest() 
+            output = oct(int(text)).replace("0o","")
             message = f"**Encoded:**\n{output}"
 
         # "decode" or "d" entered
         if action == "decode" or action == 'd':
-            if hashlib.md5(text.encode()).hexdigest() == text:
-                message = f"**Decoded:**\n{text}"
-            else:
-                message = f"**Error**"
+            output = 0
+            base = 1
+            while (int(number)):
+                last_digit = int(number) % 10
+                number = int(int(number)/ 10)
+                output += last_digit * base
+                base = base * 8
+            message = f"**Decoded:**\n{output}"
 
         await interaction.response.send_message(message)
     # Handle Errors
-    @md5.error
+    @b8.error
     async def on_command_error(self, interaction: nextcord.Interaction, error):
         message = """
-**:X:Syntax**
-> Usage - `/md5`  `<encode/decode>`  `<text>`
+**Syntax**
+> Usage - `/b8`  `<encode/decode>`  `<number>`
 
 **Examples:**
-> Shorthand: `/md5`  `e`  `some text to encode`
-> Longhand: `/md5`  `decode`  `552e21cd4cd9918678e3c1a0df491bc3`
+> Shorthand: `/b8`  `e`  `45`
+> Longhand: `/b8`  `decode`  `55`
 """
         embed = nextcord.Embed(title="SYNTAX ERROR",color=0xFE060A, description=message)
         await interaction.channel.send(embed=embed)
 
 
 def setup(client) -> None:
-    client.add_cog(md5(client))
+    client.add_cog(b8(client))
