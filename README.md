@@ -1,5 +1,5 @@
-# Earth-Invader v0.2
-Discord bot using the cryptography toolkit of [SkeletonKey](https://github.com/CosmodiumCS/SkeletonKey)
+# Earth-Invader v0.3
+Discord bot using the cryptography toolkit of [SkeletonKey](https://github.com/CosmodiumCS/SkeletonKey) with the Nextcord API wrapper.
 
 ## Usage
 Usage continues the trend of the SkeletonKey suite often. See the help menu by simply using `/help`.
@@ -14,6 +14,8 @@ You will need to add your own token and guild id in `main.py` under `client.run(
 TOKEN=your token here
 GUILD_ID=your guild id
 ```
+
+Your `GUILD_ID` can be found by enabling developer mode in the advanced settings of the discord client, right clicking and selecting copy ID on your server of choice.
 
 > WARNING: This token controls your entire bot. **It is very important you keep it hidden.**
 
