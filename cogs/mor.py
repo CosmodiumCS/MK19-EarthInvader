@@ -3,7 +3,7 @@
 
 import nextcord
 from nextcord.ext import commands
-from main import guild_id
+#from main import guild_id
 
 MORSE_CODE_DICT = {'A': '.-', 'B': '-...',
                    'C': '-.-.', 'D': '-..', 'E': '.',
@@ -40,7 +40,8 @@ class mor(commands.Cog):
     async def on_ready(self):
         print(f"Mor - Loaded")
 
-    @nextcord.slash_command(description="Morse Encode / Decode", guild_ids=[guild_id])
+    @nextcord.slash_command(description="Morse Encode / Decode" #guild_ids=[guild_id]
+    )
     async def mor(self, interaction: nextcord.Interaction, action, text):
         message = ""
         # "encode" or "e" entered

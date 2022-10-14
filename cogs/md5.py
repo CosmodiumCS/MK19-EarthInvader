@@ -3,8 +3,8 @@
 
 import nextcord
 from nextcord.ext import commands
-from main import guild_id
 import hashlib
+#from main import guild_id
 
 
 # match file name with classname
@@ -16,7 +16,8 @@ class md5(commands.Cog):
     async def on_ready(self):
         print(f"MD5 - Loaded")
 
-    @nextcord.slash_command(description="MD5 Encode / Decode", guild_ids=[guild_id])
+    @nextcord.slash_command(description="MD5 Encode / Decode" #guild_ids=[guild_id]
+    )
     async def md5(self, interaction: nextcord.Interaction, action, text):
         message = ""
         # "encode" or "e" entered

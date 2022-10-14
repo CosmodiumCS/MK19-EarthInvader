@@ -13,7 +13,8 @@ class template_file(commands.Cog):
     async def on_ready(self):
         print(f"template_file - Loaded")
 
-    @nextcord.slash_command(description="Template Encode / Decode", guild_ids=[guild_id])
+    @nextcord.slash_command(description="Template Encode / Decode" #guild_ids=[guild_id]
+    )
     async def template_file(self, interaction: nextcord.Interaction, action, text):
 
         # If not enc/dec this stays blank and throws error

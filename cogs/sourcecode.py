@@ -3,7 +3,7 @@
 
 import nextcord
 from nextcord.ext import commands
-from main import guild_id
+#from main import guild_id
 
 # match file name with classname
 class sourcecode(commands.Cog):
@@ -14,7 +14,8 @@ class sourcecode(commands.Cog):
     async def on_ready(self):
         print(f"Sourcecode - Loaded")
 
-    @nextcord.slash_command(description="Source Code", guild_ids=[guild_id])
+    @nextcord.slash_command(description="Source Code" #guild_ids=[guild_id]
+    )
     async def sourcecode(self, interaction: nextcord.Interaction):
         embed = nextcord.Embed(title="**Earth Invader | Source Code**", color=0x4287f5)
         embed.add_field(name="**[+] Available on github:**", value="https://github.com/Soulsender/Earth-Invader",inline=False)

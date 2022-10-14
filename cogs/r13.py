@@ -3,7 +3,7 @@
 
 import nextcord
 from nextcord.ext import commands
-from main import guild_id
+#from main import guild_id
 
 # match file name with classname
 class r13(commands.Cog):
@@ -14,7 +14,8 @@ class r13(commands.Cog):
     async def on_ready(self):
         print(f"R13 - Loaded")
 
-    @nextcord.slash_command(description="Rot13 Encode / Decode", guild_ids=[guild_id])
+    @nextcord.slash_command(description="Rot13 Encode / Decode" #guild_ids=[guild_id]
+    )
     async def r13(self, interaction: nextcord.Interaction, action,text):
         message = ""
         key = 13
