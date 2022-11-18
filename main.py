@@ -1,27 +1,51 @@
-from nextcord import Interaction, SlashOption
+import nextcord
 from nextcord.ext import commands
 import os
-from discord.ext import commands
+import aiohttp
 from dotenv import load_dotenv
-client = commands.Bot()
 
 load_dotenv()
 
-# Uncomment this and the respected guild_id sections in each cog for testing
-# Use your guild_id in your .env file
-#guild_id = int(os.getenv('GUILD_ID'))
+def main():
+    # allows privledged intents for monitoring members joining, roles editing, and role assignments
+    intents = nextcord.Intents.default()
+    intents.guilds = True
+    intents.members = True
+    intents.message_content = True
 
-# status
-@client.event
-async def on_ready():
-    print(f"{client.user} standing by on...")
-    print('\n'.join(guild.name for guild in client.guilds))
-    print(f"Loading Modules...")
+    activity = nextcord.Activity(
+        type=nextcord.ActivityType.listening, name=f"/help"
+    )
 
-# cog loading
-for filename in os.listdir("./cogs"):
-    if filename.endswith(".py"):
-        # cut off the .py from the file name
-        client.load_extension(f"cogs.{filename[:-3]}")
+    bot = commands.Bot(
+        command_prefix="/",
+        intents=intents,
+        activity=activity,
+        owner_id="null",
+    )
 
-client.run(str(os.getenv('TOKEN')))
+    # boolean that will be set to true when views are added
+    bot.persistent_views_added = False
+
+    @bot.event
+    async def on_ready():
+        print(f"USER: {bot.user} URL:", f"https://discord.com/api/oauth2/authorize?client_id={bot.user.id}&scope=applications.commands%20bot")
+        print(f"{bot.user} standing by on...")
+        print('\n'.join(guild.name for guild in bot.guilds))
+        print(f"Loading cogs...")
+
+    for filename in os.listdir('./cogs'):
+        if filename.endswith('.py'):
+            bot.load_extension(f'cogs.{filename[:-3]}')
+
+    async def startup():
+        bot.session = aiohttp.ClientSession()
+
+    bot.loop.create_task(startup())
+
+    # run the bot
+    bot.run(str(os.getenv('TOKEN')))
+
+
+if __name__ == "__main__":
+    main()
