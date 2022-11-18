@@ -1,4 +1,5 @@
-# Earth-Invader v0.3
+![Alt text](title.png)
+
 Discord bot using the cryptography toolkit of [SkeletonKey](https://github.com/CosmodiumCS/SkeletonKey) with the Nextcord API wrapper.
 
 ## Usage
