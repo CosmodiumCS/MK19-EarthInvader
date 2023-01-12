@@ -1,4 +1,4 @@
-FROM python:3.9-slim
+FROM python:3.9-alpine
 
 # create app directory in container
 RUN mkdir -p /app
@@ -9,7 +9,7 @@ COPY . /app
 
 # install dependencies
 RUN pip install --upgrade pip && \
-    pip install -r requirements.txt
+    pip install -r requirements.txt --no-cache-dir
 
 # set environment variable
 ENV TOKEN=yourtoken
