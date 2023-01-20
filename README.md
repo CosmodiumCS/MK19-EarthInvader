@@ -33,4 +33,5 @@ You will need to make an invite link in your discord developer portal.
 ## Credits
  - [misarb](https://github.com/Soulsender/Earth-Invader/pull/6) - md5 and morse code.
  - Based on the original [Cryptex Project](https://github.com/SSGorg/Cryptex)
+ - Icon by [Adioma](https://adioma.com).
 
