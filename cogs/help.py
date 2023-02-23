@@ -32,8 +32,11 @@ class help(commands.Cog):
 > `/md5`  `<encode/decode>`  `<text>` - MD5
 > `/mor`  `<encode/decode>`  `<text>` - Morse Code
 > `/r47`  `<encode/decode>`  `<text>` - Rot47
+
+For more information, see the wiki:
+https://github.com/CosmodiumCS/Earth-Invader/wiki
 """
-        embed = nextcord.Embed(title="Earth Invader | Help", color=0x4287f5, description=message)
+        embed = nextcord.Embed(title="Earth Invader  |  Help", color=0x4287f5, description=message)
         await interaction.response.send_message(embed=embed)
 
 
