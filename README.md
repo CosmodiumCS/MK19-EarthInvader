@@ -2,6 +2,8 @@
 
 Discord bot using the cryptography toolkit of [SkeletonKey](https://github.com/CosmodiumCS/SkeletonKey) with the Nextcord API wrapper.
 
+[Offical invite link](https://discord.com/oauth2/authorize?client_id=993324580125032538&permissions=139586947136&scope=bot%20applications.commands)
+
 ## Usage
 Usage continues the trend of the SkeletonKey suite often. See the help menu by simply using `/help`.
 
