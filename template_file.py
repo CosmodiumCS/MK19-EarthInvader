@@ -10,7 +10,7 @@ class template_file(commands.Cog):
 
     @commands.Cog.listener()
     async def on_ready(self):
-        print(f"template_file - Loaded")
+        print("template_file - Loaded")
 
     @nextcord.slash_command(description="Template Encode / Decode" #guild_ids=[guild_id]
     )
@@ -19,22 +19,16 @@ class template_file(commands.Cog):
         # If not enc/dec this stays blank and throws error
         message = ""
         # "encode" or "e" entered
-        if action == "encode" or action == 'e':
+        if action in ["encode", 'e']:
             output = ""
-
-
             # Encoding in here to output
-
 
             message = f"**Encoded:**\n{output}"
 
         # "decode" or "d" entered
-        if action == "decode" or action == 'd':
+        if action in ["decode", 'd']:
             output = ""
-
-
             # Decoding in here to output
-
 
             message = f"**Decoded:**\n{output}"
 
@@ -48,7 +42,6 @@ class template_file(commands.Cog):
         message = """
 **Syntax**
 > Usage - `/template_file`  `<encode/decode>`  `<text>`
-
 **Examples:**
 > Shorthand: `/template_file`  `e`  `some text to encode`
 > Longhand: `/template_file`  `decode`  `c29tZSB0ZXh0`
