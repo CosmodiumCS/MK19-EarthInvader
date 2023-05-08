@@ -13,14 +13,14 @@ class r47(commands.Cog):
 
     @commands.Cog.listener()
     async def on_ready(self):
-        print(f"R47 - Loaded")
+        print("R47 - Loaded")
 
     @nextcord.slash_command(description="Rot46 Encode / Decode" #guild_ids=[guild_id]
     )
     async def r47(self, interaction: nextcord.Interaction, action, text):
         message = ""
         # "encode" or "e" entered
-        if action == "encode" or action == 'e':
+        if action in ["encode", 'e']:
             output = ''
 
             for index in text:
@@ -32,7 +32,7 @@ class r47(commands.Cog):
             message = f"**Encoded:**\n{output}"
 
         # "decode" or "d" entered
-        if action == "decode" or action == 'd':
+        if action in ["decode", 'd']:
             output = ''
 
             for index in text:
@@ -50,7 +50,6 @@ class r47(commands.Cog):
         message = """
 **Syntax**
 > Usage - `/r47`  `<encode/decode>`  `<text>`
-
 **Examples:**
 > Shorthand: `/r47`  `e`  `some text to encode`
 > Longhand: `/r47`  `decode`  `D@>6 E6IE`
