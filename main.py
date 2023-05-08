@@ -8,14 +8,14 @@ from dotenv import load_dotenv
 load_dotenv()
 
 def main():
-    # allows privledged intents for monitoring members joining, roles editing, and role assignments
+    # allows privileged intents for monitoring members joining, roles editing, and role assignments
     intents = nextcord.Intents.default()
     intents.guilds = True
     intents.members = True
     intents.message_content = True
 
     activity = nextcord.Activity(
-        type=nextcord.ActivityType.listening, name=f"/help"
+        type=nextcord.ActivityType.listening, name="/help"
     )
 
     bot = commands.Bot(
@@ -33,7 +33,7 @@ def main():
         print(f"USER: {bot.user} URL:", f"https://discord.com/api/oauth2/authorize?client_id={bot.user.id}&scope=applications.commands%20bot")
         print(f"{bot.user} standing by on...")
         print('\n'.join(guild.name for guild in bot.guilds))
-        print(f"Loading cogs...")
+        print("Loading cogs...")
 
     for filename in os.listdir('./cogs'):
         if filename.endswith('.py'):
