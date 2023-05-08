@@ -14,7 +14,7 @@ class Sourcecode(commands.Cog):
     @nextcord.slash_command(name="sourcecode")
     async def sourcecode(self, interaction: nextcord.Interaction):
       embed = nextcord.Embed(title="**Earth Invader | Source Code**", color=0x4287f5)
-      embed.add_field(name="**[+] Available on github:**", value="https://github.com/Soulsender/Earth-Invader",inline=False)
+      embed.add_field(name="**[+] Available on github:**", value="https://github.com/Cosmodiumcs/Earth-Invader",inline=False)
       await interaction.response.send_message(embed=embed, ephemeral=True)
 
 def setup(bot):
