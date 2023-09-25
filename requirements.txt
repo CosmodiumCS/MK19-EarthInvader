@@ -1,5 +1,4 @@
 Cryptography
-googletrans==3.1.0a0
 python-dotenv~=0.20.0
 nextcord>=2.2.0
 aiohttp
