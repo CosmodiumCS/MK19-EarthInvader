@@ -33,7 +33,7 @@ class help(commands.Cog):
 > `/mor`  `<encode/decode>`  `<text>` - Morse Code
 > `/r47`  `<encode/decode>`  `<text>` - Rot47
 
-**[+] Miscellaneous Functions:
+**[+] Miscellaneous Functions:**
 > `/replace`  `o` `5` `Hello World` - Replaces "o" with "5" in "Hello World"
 
 For more information, see the wiki:

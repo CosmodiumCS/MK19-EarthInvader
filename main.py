@@ -8,60 +8,43 @@ import glob
 
 load_dotenv()
 
-
-def create_bot():
+def main():
+    # allows privledged intents for monitoring members joining, roles editing, and role assignments
     intents = nextcord.Intents.default()
     intents.guilds = True
     intents.members = True
     intents.message_content = True
-
     activity = nextcord.Activity(
-        type=nextcord.ActivityType.listening, name="/help"
+        type=nextcord.ActivityType.listening, name=f"/help"
     )
 
-    return commands.Bot(
+    bot = commands.Bot(
         command_prefix="/",
         intents=intents,
         activity=activity,
         owner_id="null",
     )
 
-
-def load_cogs(bot):
-    for file in glob.glob("cogs/*.py"):
-        cog_name = os.path.basename(file)[:-3]  # Remove the extension
-        bot.load_extension(f"cogs.{cog_name}")
-
-    print("Cogs loaded.")
-
-
-async def startup(bot):
-    async with aiohttp.ClientSession() as session:
-        bot.session = session
-
-
-def get_bot_token():
-    if token := os.getenv('TOKEN'):
-        return token
-    else:
-        raise ValueError("Bot token not found. Make sure to set TOKEN environment variable.")
-
-
-def main():
-    bot = create_bot()
+    bot.persistent_views_added = False
 
     @bot.event
     async def on_ready():
-        print(f"USER: {bot.user} URL:", f"https://discord.com/api/oauth2/authorize?client_id={bot.user.id}&scope=applications.commands%20bot")
+        print(f"USER: {bot.user} \nURL:", f"https://discord.com/api/oauth2/authorize?client_id={bot.user.id}&scope=applications.commands%20bot")
         print(f"{bot.user} standing by on...")
         print('\n'.join(guild.name for guild in bot.guilds))
-        print("Loading cogs...")
-        load_cogs(bot)
+        print(f"Loading cogs...")
+    
+    for filename in os.listdir('cogs'):
+        if filename.endswith('.py'):
+            bot.load_extension(f'cogs.{filename[:-3]}')
 
-    bot.loop.create_task(startup(bot))
+    async def startup():
+        bot.session = aiohttp.ClientSession()
 
-    # Run the bot
-    bot.run(get_bot_token())
+    bot.loop.create_task(startup())
+
+    # run the bot
+    bot.run(str(os.getenv('TOKEN')))
 
 
 if __name__ == "__main__":
