@@ -19,6 +19,7 @@ You can pull the latest image from dockerhub and run it with:
 docker pull soulsender/earth-invader
 docker run -e TOKEN=yourtoken earth-invader
 ```
+or alternatively with the docker-compose file.
 
 #### Using With Python
 You will need to add your own token in `main.py` under `client.run()`. It's recommended you store the token in an environment (`.env`) file for better security. Rename `.env_example` in the root directory and add your own credentials as follows:
