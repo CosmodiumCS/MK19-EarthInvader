@@ -25,6 +25,7 @@ def main():
         owner_id="null",
     )
 
+    bot.remove_command('help')
     bot.persistent_views_added = False
 
     @bot.event
@@ -34,18 +35,23 @@ def main():
         print('\n'.join(guild.name for guild in bot.guilds))
         print(f"Loading cogs...")
     
-    for filename in os.listdir('cogs'):
-        if filename.endswith('.py'):
-            bot.load_extension(f'cogs.{filename[:-3]}')
+    try:
+        for filename in os.listdir('cogs'):
+            if filename.endswith('.py'):
+                bot.load_extension(f'cogs.{filename[:-3]}')
+    except:
+        print("There was an error loading the bot's cogs.")
 
     async def startup():
         bot.session = aiohttp.ClientSession()
 
     bot.loop.create_task(startup())
 
-    # run the bot
-    bot.run(str(os.getenv('TOKEN')))
-
+    try:
+        # run the bot
+        bot.run(str(os.getenv('TOKEN')))
+    except nextcord.errors.LoginFailure:
+        print("There was an error logging into the bot account. Please make sure the appropriate token is in your .env file.")
 
 if __name__ == "__main__":
     main()
