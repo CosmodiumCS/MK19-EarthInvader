@@ -39,8 +39,7 @@ Example:
 **[+] Miscellaneous Functions:**
 > `/replace`  `o` `5` `Hello World` - Replaces "o" with "5" in "Hello World"
 
-For more information, see the wiki:
-https://github.com/CosmodiumCS/Earth-Invader/wiki
+[For more information, see the wiki](https://github.com/CosmodiumCS/Earth-Invader/wiki)
 """
         embed = nextcord.Embed(title="Earth Invader  |  Help", color=0x4287f5, description=message)
         await interaction.response.send_message(embed=embed)

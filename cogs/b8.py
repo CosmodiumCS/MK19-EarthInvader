@@ -20,7 +20,7 @@ class b8(commands.Cog):
         message = ""
         # "encode" or "e" entered
         if action == "encode" or action == 'e':
-            output = oct(int(text)).replace("0o","")
+            output = oct(int(number)).replace("0o","")
             message = f"**Encoded:**\n{output}"
 
         # "decode" or "d" entered
