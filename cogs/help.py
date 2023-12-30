@@ -29,9 +29,9 @@ class help(commands.Cog):
 > `/cc`  `<encode/decode>`  `<key: number>`  `<text>` - Caeser
 > `/hex`  `<encode/decode>`  `<text>` - Hex
 > `/leet`  `<encode/decode>`  `<text>` - L337 $P33K
-> `/md5`  `<encode/decode>`  `<text>` - MD5
 > `/mor`  `<encode/decode>`  `<text>` - Morse Code
-> `/r47`  `<encode/decode>`  `<text>` - Rot47
+> `/r47`  `<encode/decode>`  `<text>` - Rotation 47
+> `/r13`  `<encode/decode>`  `<text>` - Rotation 13
 
 Example:
 `/b64 e some text` where `e` is to encode and `some text` is to be encoded.
@@ -39,7 +39,7 @@ Example:
 **[+] Miscellaneous Functions:**
 > `/replace`  `o` `5` `Hello World` - Replaces "o" with "5" in "Hello World"
 
-[For more information, see the wiki](https://github.com/CosmodiumCS/Earth-Invader/wiki)
+[For more information, see the wiki.](https://github.com/CosmodiumCS/Earth-Invader/wiki)
 """
         embed = nextcord.Embed(title="Earth Invader  |  Help", color=0x4287f5, description=message)
         await interaction.response.send_message(embed=embed)
