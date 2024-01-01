@@ -2,7 +2,8 @@ version: '3'
 
 services:
   earth-invader:
-    image: soulsender/earth-invader:latest
+    image: soulsender/earth-invader:v1.1.1
     environment:
       - TOKEN=your_token_here
+      - WEBHOOK_URL=your webhook logging url here
     restart: unless-stopped

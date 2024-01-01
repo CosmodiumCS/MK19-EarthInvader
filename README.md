@@ -8,27 +8,23 @@ Discord bot using the cryptography toolkit of [SkeletonKey](https://github.com/C
 Usage continues the trend of the SkeletonKey suite often. See the help menu by simply using `/help`.
 
 ## Setting up yourself
-Should you want to use the code yourself, you can either use the Docker container or replace the Discord token in `main.py`. You will then have to generate an invite link of your own.
+Should you want to use the code yourself, you can either use the Docker container or replace the Discord token in `main.py`. You will then have to generate an invite link of your own. The docker container is recommended, as it is easier to daemonize.
 
-#### Discord Developer 
-You will also need to make your own [discord developer](https://discord.com/developers/docs/intro) account to acquire said token.
-
-#### Using With Docker
+### Using With Docker
 You can pull the latest image from dockerhub and run it with:
 ```
-docker pull soulsender/earth-invader
-docker run -e TOKEN=yourtoken earth-invader
+docker pull soulsender/earth-invader:latest
+docker run -e TOKEN=yourtoken earth-invader WEBHOOK_URL=url
 ```
 or alternatively with the docker-compose file.
 
-#### Using With Python
-You will need to add your own token in `main.py` under `client.run()`. It's recommended you store the token in an environment (`.env`) file for better security. Rename `.env_example` in the root directory and add your own credentials as follows:
-
-```
-TOKEN=your token here
-```
-
+You can get your `TOKEN` from the [discord developer portal](https://discord.com/developers/docs/intro).
 > WARNING: This token controls your entire bot. **It is very important you keep it hidden.**
+
+You can get your logging `WEBHOOK_URL` by going to a channel in a server, going to settings, and webhooks.
+
+#### Using With Python
+You will need to add your own token in `main.py` under `client.run()`. It's recommended you store the token and webhook in an environment (`.env`) file for better security. Rename `.env_example` in the root directory and add your own credentials.
 
 #### Invite Link
 You will need to make an invite link in your Discord developer portal.
