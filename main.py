@@ -3,6 +3,7 @@ from dotenv import load_dotenv
 import aiohttp
 import nextcord
 from nextcord.ext import commands
+from webhook import send_webhook
 import glob
 
 
@@ -35,6 +36,19 @@ def main():
         print('\n'.join(guild.name for guild in bot.guilds))
         print(f"Loading cogs...")
     
+    # logging when the bot joins a server
+    @bot.event
+    async def on_guild_join(guild):
+        send_webhook("Earth Invader Joined Server", f"""
+        **Server:** {guild.name}
+        **Shard ID:** {guild.shard_id}
+        **Description:** {guild.description}
+        **Owner Name:** {guild.owner} 
+        **Owner ID:** {guild.owner_id}
+        **Member Count:** {guild.member_count}
+        **Region:** {guild.region}
+        """)
+
     try:
         for filename in os.listdir('cogs'):
             if filename.endswith('.py'):
@@ -51,7 +65,7 @@ def main():
         # run the bot
         bot.run(str(os.getenv('TOKEN')))
     except nextcord.errors.LoginFailure:
-        print("There was an error logging into the bot account. Please make sure the appropriate token is in your .env file.")
+        print("There was an error logging into the bot account. Please make sure the appropriate token is in your .env file.") 
 
 if __name__ == "__main__":
     main()
