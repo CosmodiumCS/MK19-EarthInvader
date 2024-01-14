@@ -45,7 +45,7 @@ class leet(commands.Cog):
                 else:
                     output += character
 
-            message = f"**Encoded:**\n{output}"
+            message = f"**Encoded:**\n`{output}`"
 
         # "decode" or "d" entered
         if action == "decode" or action == 'd':
@@ -58,7 +58,7 @@ class leet(commands.Cog):
                 else:
                     output += character
 
-            message = f"**Decoded:**\n{output}"
+            message = f"**Decoded:**\n`{output}`"
 
         await interaction.response.send_message(message)
     # Handle Errors
@@ -67,7 +67,7 @@ class leet(commands.Cog):
     async def on_command_error(self, interaction: nextcord.Interaction, error):
         message = """
 **Syntax**
-> Usage - `/leet`  `<encode/decode>`  `<key>`  `<text>`
+> Usage - `/leet`  `<encode/decode>`  `<text>`
 
 **Examples:**
 > Shorthand: `/leet`  `e`  `some text to encode`

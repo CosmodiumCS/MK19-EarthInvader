@@ -21,7 +21,7 @@ class b8(commands.Cog):
         # "encode" or "e" entered
         if action == "encode" or action == 'e':
             output = oct(int(number)).replace("0o","")
-            message = f"**Encoded:**\n{output}"
+            message = f"**Encoded:**\n`{output}`"
 
         # "decode" or "d" entered
         if action == "decode" or action == 'd':
@@ -32,7 +32,7 @@ class b8(commands.Cog):
                 number = int(int(number)/ 10)
                 output += last_digit * base
                 base = base * 8
-            message = f"**Decoded:**\n{output}"
+            message = f"**Decoded:**\n`{output}`"
 
         await interaction.response.send_message(message)
     # Handle Errors

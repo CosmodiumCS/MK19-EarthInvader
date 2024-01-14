@@ -21,12 +21,12 @@ class hex(commands.Cog):
         # "encode" or "e" entered
         if action == "encode" or action == 'e':
             output = text.encode("utf-8").hex()
-            message = f"**Encoded:**\n{output}"
+            message = f"**Encoded:**\n`{output}`"
 
         # "decode" or "d" entered
         if action == "decode" or action == 'd':
             output = bytes.fromhex(text).decode("utf-8")
-            message = f"**Decoded:**\n{output}"
+            message = f"**Decoded:**\n`{output}`"
 
         await interaction.response.send_message(message)
     # Handle Errors

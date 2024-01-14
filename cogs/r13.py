@@ -36,7 +36,7 @@ class r13(commands.Cog):
                     else:
                         output += chr((ord(character) +
                                       int(key) - 97) % 26 + 97)
-            message = f"**Encoded:**\n{output}"
+            message = f"**Encoded:**\n`{output}`"
 
         # "decode" or "d" entered
         if action == "decode" or action == 'd':
@@ -54,7 +54,7 @@ class r13(commands.Cog):
                     else:
                         output += chr((ord(character) -
                                       int(key) - 97) % 26 + 97)
-            message = f"**Decoded:**\n{output}"
+            message = f"**Decoded:**\n`{output}`"
 
         await interaction.response.send_message(message)
     # Handle Errors

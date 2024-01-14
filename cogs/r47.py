@@ -29,7 +29,7 @@ class r47(commands.Cog):
                     output += chr(33 + ((encoded + 14) % 94))
                 else:
                     output += index
-            message = f"**Encoded:**\n{output}"
+            message = f"**Encoded:**\n`{output}`"
 
         # "decode" or "d" entered
         if action in ["decode", 'd']:
@@ -41,7 +41,7 @@ class r47(commands.Cog):
                     output += chr(33 + ((encoded + 14) % 94))
                 else:
                     output += index
-            message = f"**Decoded:**\n{output}"
+            message = f"**Decoded:**\n`{output}`"
 
         await interaction.response.send_message(message)
     # Handle Errors

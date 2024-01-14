@@ -21,7 +21,7 @@ class bin(commands.Cog):
         # "encode" or "e" entered
         if action == "encode" or action == 'e':
             output = ' '.join(format(ord(x), 'b') for x in text)
-            message = f"**Encoded:**\n{output}"
+            message = f"**Encoded:**`\n{output}`"
 
         # "decode" or "d" entered
         if action == "decode" or action == 'd':
@@ -29,7 +29,7 @@ class bin(commands.Cog):
             binary_list = text.split(' ')
             for binary in binary_list:
                 output += chr(int(binary, 2))
-            message = f"**Decoded:**\n{output}"
+            message = f"**Decoded:**`\n{output}`"
 
         await interaction.response.send_message(message)
     # Handle Errors

@@ -24,14 +24,14 @@ class b64(commands.Cog):
             text = text.encode('ascii')
             b64_bytes = base64.b64encode(text)
             output = b64_bytes.decode('ascii')
-            message = f"**Encoded:**\n{output}"
+            message = f"**Encoded:**\n`{output}`"
 
         # "decode" or "d" entered
         if action == "decode" or action == 'd':
             text = text.encode('ascii')
             b64_bytes = base64.b64decode(text)
             output = b64_bytes.decode('ascii')
-            message = f"**Decoded:**\n{output}"
+            message = f"**Decoded:**\n`{output}`"
 
         await interaction.response.send_message(message)
     # Handle Errors

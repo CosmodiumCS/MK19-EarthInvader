@@ -53,7 +53,7 @@ class mor(commands.Cog):
                 else:
                     output += ' '
 
-            message = f"**Encoded:**\n{output}"
+            message = f"**Encoded:**\n`{output}`"
 
         # "decode" or "d" entered
         if action == "decode" or action == 'd':
@@ -86,7 +86,7 @@ class mor(commands.Cog):
                         output += list(MORSE_CODE_DICT.keys())[list(MORSE_CODE_DICT
                                                                     .values()).index(citext)]
                         citext = ''
-            message = f"**Decoded:**\n{output}"
+            message = f"**Decoded:**\n`{output}`"
 
         await interaction.response.send_message(message)
     # Handle Errors
