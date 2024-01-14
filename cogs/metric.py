@@ -11,7 +11,7 @@ class metric(commands.Cog):
     async def on_ready(self):
         print(f"Metric - Loaded")
 
-    @nextcord.slash_command(description="Convert metric to imperial", guild_ids=[414625175217242113]
+    @nextcord.slash_command(description="Convert metric to imperial"
     )
     async def metric(self, interaction: nextcord.Interaction, unit, value):
         value = float(value)
