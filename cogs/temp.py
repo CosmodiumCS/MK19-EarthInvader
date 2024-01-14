@@ -11,7 +11,7 @@ class temp(commands.Cog):
     async def on_ready(self):
         print(f"Temp - Loaded")
 
-    @nextcord.slash_command(description="Convert temperature metrics", guild_ids=[414625175217242113]
+    @nextcord.slash_command(description="Convert temperature metrics"
     )
     async def temp(self, interaction: nextcord.Interaction, unit, value):
         value = int(value)
