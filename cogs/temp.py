@@ -14,7 +14,7 @@ class temp(commands.Cog):
     @nextcord.slash_command(description="Convert temperature metrics"
     )
     async def temp(self, interaction: nextcord.Interaction, unit, value):
-        value = int(value)
+        value = float(value)
         if unit.lower() == "celsius" or unit.lower() == "c":
             converted_value = (value * 9/5) + 32
             response = f"`{value:.1f}°C` \nis \n`{converted_value:.1f}°F`"

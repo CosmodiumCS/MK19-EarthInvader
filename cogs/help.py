@@ -38,6 +38,9 @@ Example:
 
 **[+] Miscellaneous Functions:**
 > `/replace`  `o` `5` `Hello World` - Replaces "o" with "5" in "Hello World"
+> `/temp`  `c`  `-10 - Converts -10C to fahrenheit
+> `/metric`  `kg`  `200` - Converts 200kg to pounds
+
 
 [For more information, see the wiki.](https://github.com/CosmodiumCS/Earth-Invader/wiki)
 """
