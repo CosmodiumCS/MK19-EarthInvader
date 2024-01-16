@@ -19,28 +19,27 @@ class help(commands.Cog):
     async def help(self, interaction: nextcord.Interaction):
         message = """
 **[+] Getting Started:**
-> `/help` - Shows this message.
-> `/sourcecode` - Gets github url.
+> `/help                                           ` - Shows this message.
+> `/sourcecode                                     ` - Gets github url.
 
 **[+] Current Ciphers:**
-> `/b8`  `<encode/decode>`  `<number>` - Base8
-> `/b64`  `<encode/decode>`  `<text>` - Base64
-> `/bin`  `<encode/decode>`  `<text>` - Binary
-> `/cc`  `<encode/decode>`  `<key: number>`  `<text>` - Caeser
-> `/hex`  `<encode/decode>`  `<text>` - Hex
-> `/leet`  `<encode/decode>`  `<text>` - L337 $P33K
-> `/mor`  `<encode/decode>`  `<text>` - Morse Code
-> `/r47`  `<encode/decode>`  `<text>` - Rotation 47
-> `/r13`  `<encode/decode>`  `<text>` - Rotation 13
+> `/b8      <encode/decode>     <number>           ` - Base8
+> `/b64     <encode/decode>     <text>             ` - Base64
+> `/bin     <encode/decode>     <text>             ` - Binary
+> `/cc      <encode/decode>     <key>    <text>    ` - Caeser
+> `/hex     <encode/decode>     <text>             ` - Hex
+> `/leet    <encode/decode>     <text>             ` - L337 $P33K
+> `/mor     <encode/decode>     <text>             ` - Morse Code
+> `/r47     <encode/decode>     <text>             ` - Rotation 47
+> `/r13     <encode/decode>     <text>             ` - Rotation 13
 
-Example:
+**[+]Example:**
 `/b64 e some text` where `e` is to encode and `some text` is to be encoded.
 
 **[+] Miscellaneous Functions:**
-> `/replace`  `o` `5` `Hello World` - Replaces "o" with "5" in "Hello World"
-> `/temp`  `c`  `-10 - Converts -10C to fahrenheit
-> `/metric`  `kg`  `200` - Converts 200kg to pounds
-
+> `/replace  o   5    Hello World    ` - Replaces "o" with "5" in "Hello World"
+> `/temp     c   -10                 ` - Converts -10C to fahrenheit
+> `/metric   kg  200                 ` - Converts 200kg to pounds
 
 [For more information, see the wiki.](https://github.com/CosmodiumCS/Earth-Invader/wiki)
 """
