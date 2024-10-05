@@ -24,7 +24,7 @@ You can get your `TOKEN` from the [discord developer portal](https://discord.com
 You can get your logging `WEBHOOK_URL` by going to a channel in a server, going to settings, and webhooks.
 
 #### Using With Python
-You will need to add your own token in `main.py` under `client.run()`. It's recommended you store the token and webhook in an environment (`.env`) file for better security. Rename `.env_example` in the root directory and add your own credentials.
+You will need to add your own token in `src/main.py` under `client.run()`. It's recommended you store the token and webhook in an environment (`.env`) file for better security. Rename `.env_example` in the root directory and add your own credentials.
 
 #### Invite Link
 You will need to make an invite link in your Discord developer portal.
