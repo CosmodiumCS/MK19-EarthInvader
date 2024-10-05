@@ -3,7 +3,6 @@
 
 import nextcord
 from nextcord.ext import commands
-#from main import guild_id
 
 # match file name with classname
 class bin(commands.Cog):
@@ -14,8 +13,7 @@ class bin(commands.Cog):
     async def on_ready(self):
         print("Bin - Loaded")
 
-    @nextcord.slash_command(description="Binary Encode / Decode" #guild_ids=[guild_id]
-    )
+    @nextcord.slash_command(description="Binary Encode / Decode")
     async def bin(self, interaction: nextcord.Interaction, action, text):
         message = ""
         # "encode" or "e" entered

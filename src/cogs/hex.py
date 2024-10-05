@@ -3,7 +3,6 @@
 
 import nextcord
 from nextcord.ext import commands
-#from main import guild_id
 
 # match file name with classname
 class hex(commands.Cog):
@@ -14,8 +13,7 @@ class hex(commands.Cog):
     async def on_ready(self):
         print("Hex - Loaded")
 
-    @nextcord.slash_command(description="Hex Encode / Decode" #guild_ids=[guild_id]
-    )
+    @nextcord.slash_command(description="Hex Encode / Decode")
     async def hex(self, interaction: nextcord.Interaction, action, text):
         message = ""
         # "encode" or "e" entered

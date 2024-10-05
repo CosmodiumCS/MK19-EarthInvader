@@ -54,9 +54,9 @@ def main():
         """)
 
     try:
-        for filename in os.listdir('cogs'):
+        for filename in os.listdir('src/cogs'):
             if filename.endswith('.py'):
-                bot.load_extension(f'cogs.{filename[:-3]}')
+                bot.load_extension(f'src.cogs.{filename[:-3]}')
     except Exception:
         print("There was an error loading the bot's cogs.")
 

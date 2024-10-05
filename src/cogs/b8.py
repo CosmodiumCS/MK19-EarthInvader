@@ -3,7 +3,6 @@
 
 import nextcord
 from nextcord.ext import commands
-# from main import guild_id
 
 # match file name with classname
 class b8(commands.Cog):
@@ -14,8 +13,7 @@ class b8(commands.Cog):
     async def on_ready(self):
         print("B8 - Loaded")
 
-    @nextcord.slash_command(description="Base8 Encode / Decode" #guild_ids=[guild_id]
-    )
+    @nextcord.slash_command(description="Base8 Encode / Decode")
     async def b8(self, interaction: nextcord.Interaction, action, number):
         message = ""
         # "encode" or "e" entered

@@ -4,7 +4,6 @@
 import nextcord
 from nextcord.ext import commands
 import base64
-#from main import guild_id
 
 # match file name with classname
 class b64(commands.Cog):
@@ -15,8 +14,7 @@ class b64(commands.Cog):
     async def on_ready(self):
         print("B64 - Loaded")
 
-    @nextcord.slash_command(description="Base64 Encode / Decode" #guild_ids=[guild_id]
-    )
+    @nextcord.slash_command(description="Base64 Encode / Decode")
     async def b64(self, interaction: nextcord.Interaction, action, text):
         message = ""
         # "encode" or "e" entered

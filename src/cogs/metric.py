@@ -1,6 +1,5 @@
 import nextcord
 from nextcord.ext import commands
-#from main import guild_id
 
 # match file name with classname
 class metric(commands.Cog):
@@ -11,8 +10,7 @@ class metric(commands.Cog):
     async def on_ready(self):
         print("Metric - Loaded")
 
-    @nextcord.slash_command(description="Convert metric to imperial"
-    )
+    @nextcord.slash_command(description="Convert metric to imperial")
     async def metric(self, interaction: nextcord.Interaction, unit, value):
         value = float(value)
         if unit.lower() in ["kilometers", "km"]:

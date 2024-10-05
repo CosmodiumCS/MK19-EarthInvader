@@ -1,19 +1,18 @@
 import nextcord
 from nextcord.ext import commands
-#from main import guild_id
 
 # match file name with classname
-class temp(commands.Cog):
+class temperature(commands.Cog):
     def __init__(self, client: commands.Bot):
         self.client = client
 
     @commands.Cog.listener()
     async def on_ready(self):
-        print("Temp - Loaded")
+        print("Temperature - Loaded")
 
     @nextcord.slash_command(description="Convert temperature metrics"
     )
-    async def temp(self, interaction: nextcord.Interaction, unit, value):
+    async def temperature(self, interaction: nextcord.Interaction, unit, value):
         value = float(value)
         if unit.lower() in ["celsius", "c"]:
             converted_value = (value * 9/5) + 32
@@ -24,15 +23,15 @@ class temp(commands.Cog):
         await interaction.response.send_message(response)
 
     # Handle Errors
-    @temp.error
+    @temperature.error
     async def on_command_error(self, interaction: nextcord.Interaction, error):
         message = """
 **Syntax**
-> Usage - `/temp`  `<unit>` `<value>`
+> Usage - `/temperature`  `<unit>` `<value>`
 
 **Examples:**
-> Shorthand: `/temp`  `c`  `-10`
-> Longhand: `/temp`  `fahrenheit`  `20`
+> Shorthand: `/temperature`  `c`  `-10`
+> Longhand: `/temperature`  `fahrenheit`  `20`
 """
         embed = nextcord.Embed(title="SYNTAX ERROR",
                                color=0xFE060A, description=message)
@@ -40,4 +39,4 @@ class temp(commands.Cog):
 
 
 def setup(client) -> None:
-    client.add_cog(temp(client))
+    client.add_cog(temperature(client))

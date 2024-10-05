@@ -3,7 +3,6 @@
 
 import nextcord
 from nextcord.ext import commands
-#from main import guild_id
 
 # leet chr
 leet_dictionary_enc = {
@@ -29,8 +28,7 @@ class leet(commands.Cog):
     async def on_ready(self):
         print("Leet - Loaded")
 
-    @nextcord.slash_command(description="L33T Encode / Decode" #guild_ids=[guild_id]
-    )
+    @nextcord.slash_command(description="L33T Encode / Decode")
     async def leet(self, interaction: nextcord.Interaction, action, text):
         message = ""
 

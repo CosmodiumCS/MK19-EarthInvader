@@ -3,8 +3,6 @@
 
 import nextcord
 from nextcord.ext import commands
-import base64
-#from main import guild_id
 
 # match file name with classname
 class r47(commands.Cog):
@@ -15,8 +13,7 @@ class r47(commands.Cog):
     async def on_ready(self):
         print("R47 - Loaded")
 
-    @nextcord.slash_command(description="Rot46 Encode / Decode" #guild_ids=[guild_id]
-    )
+    @nextcord.slash_command(description="Rot46 Encode / Decode")
     async def r47(self, interaction: nextcord.Interaction, action, text):
         message = ""
         # "encode" or "e" entered
