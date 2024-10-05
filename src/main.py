@@ -1,4 +1,9 @@
 import os
+import sys
+
+# Add the src directory to the Python path
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+
 from dotenv import load_dotenv
 import aiohttp
 import nextcord
@@ -9,7 +14,7 @@ from src.webhook import send_webhook
 load_dotenv()
 
 def main():
-    # allows privledged intents for monitoring members joining, roles editing, and role assignments
+    # allows privileged intents for monitoring members joining, roles editing, and role assignments
     intents = nextcord.Intents.default()
     intents.guilds = True
     intents.members = True
