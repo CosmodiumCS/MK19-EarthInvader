@@ -25,5 +25,8 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
+      - name: Make build.sh executable
+        run: chmod +x ./.github/workflows/build.sh
+
       - name: Build and push
         run: ./.github/workflows/build.sh
