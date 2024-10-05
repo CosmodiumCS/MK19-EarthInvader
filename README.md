@@ -1,4 +1,4 @@
-![Alt text](title.png)
+![Alt text](assets/title.png)
 
 Discord bot using the cryptography toolkit of [SkeletonKey](https://github.com/CosmodiumCS/SkeletonKey) with the Nextcord API wrapper.
 
