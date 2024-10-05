@@ -9,7 +9,7 @@ class Sourcecode(commands.Cog):
 
     @commands.Cog.listener()
     async def on_ready(self):
-      print(f"Sourcecode - Loaded")
+        print("Sourcecode - Loaded")
 
     @nextcord.slash_command(name="sourcecode")
     async def sourcecode(self, interaction: nextcord.Interaction):

@@ -12,7 +12,7 @@ class r13(commands.Cog):
 
     @commands.Cog.listener()
     async def on_ready(self):
-        print(f"R13 - Loaded")
+        print("R13 - Loaded")
 
     @nextcord.slash_command(description="Rot13 Encode / Decode" #guild_ids=[guild_id]
     )
@@ -21,7 +21,7 @@ class r13(commands.Cog):
         key = 13
 
         # "encode" or "e" entered
-        if action == "encode" or action == 'e':
+        if action in ["encode", 'e']:
             output = ''
             exclude = "\n\t .?!,/\\<>|[]{}@#$%^&*()-_=+`~:;\"'0123456789"
 
@@ -31,15 +31,13 @@ class r13(commands.Cog):
                     if character in exclude:
                         output += character
                     elif character.isupper():
-                        output += chr((ord(character) +
-                                      int(key) - 65) % 26 + 65)
+                        output += chr((((((ord(character) + key) - 65)) % 26) + 65))
                     else:
-                        output += chr((ord(character) +
-                                      int(key) - 97) % 26 + 97)
+                        output += chr((((((ord(character) + key) - 97)) % 26) + 97))
             message = f"**Encoded:**\n`{output}`"
 
         # "decode" or "d" entered
-        if action == "decode" or action == 'd':
+        if action in ["decode", 'd']:
             output = ''
             exclude = "\n\t .?!,/\\<>|[]{}@#$%^&*()-_=+`~:;\"'0123456789"
 
@@ -49,11 +47,9 @@ class r13(commands.Cog):
                     if character in exclude:
                         output += character
                     elif character.isupper():
-                        output += chr((ord(character) -
-                                      int(key) - 65) % 26 + 65)
+                        output += chr((((((ord(character) - key) - 65)) % 26) + 65))
                     else:
-                        output += chr((ord(character) -
-                                      int(key) - 97) % 26 + 97)
+                        output += chr((((((ord(character) - key) - 97)) % 26) + 97))
             message = f"**Decoded:**\n`{output}`"
 
         await interaction.response.send_message(message)

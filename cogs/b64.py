@@ -13,21 +13,21 @@ class b64(commands.Cog):
 
     @commands.Cog.listener()
     async def on_ready(self):
-        print(f"B64 - Loaded")
+        print("B64 - Loaded")
 
     @nextcord.slash_command(description="Base64 Encode / Decode" #guild_ids=[guild_id]
     )
     async def b64(self, interaction: nextcord.Interaction, action, text):
         message = ""
         # "encode" or "e" entered
-        if action == "encode" or action == 'e':
+        if action in ["encode", 'e']:
             text = text.encode('ascii')
             b64_bytes = base64.b64encode(text)
             output = b64_bytes.decode('ascii')
             message = f"**Encoded:**\n`{output}`"
 
         # "decode" or "d" entered
-        if action == "decode" or action == 'd':
+        if action in ["decode", 'd']:
             text = text.encode('ascii')
             b64_bytes = base64.b64decode(text)
             output = b64_bytes.decode('ascii')

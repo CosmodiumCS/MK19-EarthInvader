@@ -18,7 +18,7 @@ leet_dictionary_enc = {
 }
 
 # invert leet chr
-leet_dictionary_dec = dict((v, k) for (k, v) in leet_dictionary_enc.items())
+leet_dictionary_dec = {v: k for (k, v) in leet_dictionary_enc.items()}
 
 # match file name with classname
 class leet(commands.Cog):
@@ -27,7 +27,7 @@ class leet(commands.Cog):
 
     @commands.Cog.listener()
     async def on_ready(self):
-        print(f"Leet - Loaded")
+        print("Leet - Loaded")
 
     @nextcord.slash_command(description="L33T Encode / Decode" #guild_ids=[guild_id]
     )
@@ -35,29 +35,29 @@ class leet(commands.Cog):
         message = ""
 
         # "encode" or "e" entered
-        if action == "encode" or action == 'e':
+        if action in ["encode", 'e']:
             text = text.lower()
-            output = ''
-
-            for character in text:
-                if character in leet_dictionary_enc:
-                    output += leet_dictionary_enc[character]
-                else:
-                    output += character
-
+            output = ''.join(
+                (
+                    leet_dictionary_enc[character]
+                    if character in leet_dictionary_enc
+                    else character
+                )
+                for character in text
+            )
             message = f"**Encoded:**\n`{output}`"
 
         # "decode" or "d" entered
-        if action == "decode" or action == 'd':
+        if action in ["decode", 'd']:
             text = text.lower()
-            output = ''
-
-            for character in text:
-                if character in leet_dictionary_dec:
-                    output += leet_dictionary_dec[character]
-                else:
-                    output += character
-
+            output = ''.join(
+                (
+                    leet_dictionary_dec[character]
+                    if character in leet_dictionary_dec
+                    else character
+                )
+                for character in text
+            )
             message = f"**Decoded:**\n`{output}`"
 
         await interaction.response.send_message(message)

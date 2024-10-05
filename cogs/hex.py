@@ -12,19 +12,19 @@ class hex(commands.Cog):
 
     @commands.Cog.listener()
     async def on_ready(self):
-        print(f"Hex - Loaded")
+        print("Hex - Loaded")
 
     @nextcord.slash_command(description="Hex Encode / Decode" #guild_ids=[guild_id]
     )
     async def hex(self, interaction: nextcord.Interaction, action, text):
         message = ""
         # "encode" or "e" entered
-        if action == "encode" or action == 'e':
+        if action in ["encode", 'e']:
             output = text.encode("utf-8").hex()
             message = f"**Encoded:**\n`{output}`"
 
         # "decode" or "d" entered
-        if action == "decode" or action == 'd':
+        if action in ["decode", 'd']:
             output = bytes.fromhex(text).decode("utf-8")
             message = f"**Decoded:**\n`{output}`"
 

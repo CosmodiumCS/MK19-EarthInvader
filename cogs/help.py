@@ -12,7 +12,7 @@ class help(commands.Cog):
 
     @commands.Cog.listener()
     async def on_ready(self):
-        print(f"Help - Loaded")
+        print("Help - Loaded")
 
     @nextcord.slash_command(description="Help menu" #guild_ids=[guild_id]
     )

@@ -12,24 +12,24 @@ class b8(commands.Cog):
 
     @commands.Cog.listener()
     async def on_ready(self):
-        print(f"B8 - Loaded")
+        print("B8 - Loaded")
 
     @nextcord.slash_command(description="Base8 Encode / Decode" #guild_ids=[guild_id]
     )
     async def b8(self, interaction: nextcord.Interaction, action, number):
         message = ""
         # "encode" or "e" entered
-        if action == "encode" or action == 'e':
+        if action in ["encode", 'e']:
             output = oct(int(number)).replace("0o","")
             message = f"**Encoded:**\n`{output}`"
 
         # "decode" or "d" entered
-        if action == "decode" or action == 'd':
+        if action in ["decode", 'd']:
             output = 0
             base = 1
             while (int(number)):
                 last_digit = int(number) % 10
-                number = int(int(number)/ 10)
+                number = int(number) // 10
                 output += last_digit * base
                 base = base * 8
             message = f"**Decoded:**\n`{output}`"
