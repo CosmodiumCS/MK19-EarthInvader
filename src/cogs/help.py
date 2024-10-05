@@ -3,7 +3,6 @@
 
 import nextcord
 from nextcord.ext import commands
-#from main import guild_id
 
 # match file name with classname
 class help(commands.Cog):
@@ -12,10 +11,9 @@ class help(commands.Cog):
 
     @commands.Cog.listener()
     async def on_ready(self):
-        print(f"Help - Loaded")
+        print("Help - Loaded")
 
-    @nextcord.slash_command(description="Help menu" #guild_ids=[guild_id]
-    )
+    @nextcord.slash_command(description="Help menu")
     async def help(self, interaction: nextcord.Interaction):
         message = """
 **[+] Getting Started:**

@@ -3,7 +3,6 @@
 
 import nextcord
 from nextcord.ext import commands
-#from main import guild_id
 
 # match file name with classname
 class cc(commands.Cog):
@@ -12,15 +11,14 @@ class cc(commands.Cog):
 
     @commands.Cog.listener()
     async def on_ready(self):
-        print(f"CC - Loaded")
+        print("CC - Loaded")
 
-    @nextcord.slash_command(description="Caeser Encode / Decode" #guild_ids=[guild_id]
-    )
+    @nextcord.slash_command(description="Caeser Encode / Decode")
     async def cc(self, interaction: nextcord.Interaction, action,key, text):
         message = ""
 
         # "encode" or "e" entered
-        if action == "encode" or action == 'e':
+        if action in ["encode", 'e']:
             output = ''
             exclude = "\n\t .?!,/\\<>|[]{}@#$%^&*()-_=+`~:;\"'0123456789"
 
@@ -38,7 +36,7 @@ class cc(commands.Cog):
             message = f"**Encoded:**`\n{output}`"
 
         # "decode" or "d" entered
-        if action == "decode" or action == 'd':
+        if action in ["decode", 'd']:
             output = ''
             exclude = "\n\t .?!,/\\<>|[]{}@#$%^&*()-_=+`~:;\"'0123456789"
 

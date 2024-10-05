@@ -1,18 +1,14 @@
 FROM python:3.10-alpine
 
-# create app directory in container
-RUN mkdir -p /app
 WORKDIR /app
 
-# copy source code to container
-COPY . /app
+RUN pip install poetry
 
-# install dependencies
-RUN pip install --upgrade pip && \
-    pip install -r requirements.txt --no-cache-dir
+COPY pyproject.toml poetry.lock ./
 
-# set environment variable
-ENV TOKEN=yourtoken
+RUN poetry config virtualenvs.create false && poetry install --no-dev
+
+COPY . .
 
 # run the application
-CMD ["python3", "main.py"]
+CMD ["python3", "src/main.py"]

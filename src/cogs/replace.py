@@ -11,7 +11,7 @@ class replacer(commands.Cog):
 
     @commands.Cog.listener()
     async def on_ready(self):
-        print(f"Replacer - Loaded")
+        print("Replacer - Loaded")
 
     @nextcord.slash_command(description="Text Replacer")
     async def replace(self, interaction: nextcord.Interaction, template_char, replace_char, text):
