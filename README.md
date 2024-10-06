@@ -32,13 +32,16 @@ To run Earth-Invader with Python using Poetry:
 1. Clone the repository.
 2. Install Poetry if you haven't already using [these](https://python-poetry.org/docs/#installing-with-pipx) instructions.
 3. Navigate to the project directory and install the required dependencies using Poetry:
-    ```sh
+
+    ```bash
     poetry install
     ```
-4. Replace the placeholder token in `src/main.py` under `client.run()` with your own Discord bot token.
-5. Optionally, store your token and webhook URL in an environment file (`.env`) for added security. You can rename the `.env.example` file located in the root directory and add your credentials there.
-6. Run the project using Poetry:
-    ```sh
+    
+5. Replace the placeholder token in `src/main.py` under `client.run()` with your own Discord bot token.
+6. Optionally, store your token and webhook URL in an environment file (`.env`) for added security. You can rename the `.env.example` file located in the root directory and add your credentials there.
+7. Run the project using Poetry:
+
+    ```bash
     poetry run python src/main.py
     ```
 
