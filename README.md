@@ -57,5 +57,5 @@ The bot follows the pattern of other SkeletonKey suite tools. To get started wit
 ## Credits
 - [0xSolanaceae](https://github.com/0xSolanaceae) - Codebase contributions and general improvements.
 - [misarb](https://github.com/Soulsender/Earth-Invader/pull/6) - Contributions to MD5 and Morse code functionality.
-- Built upon the original [Cryptex Project](https://github.com/SSGorg/Cryptex)
+- Built upon the original [Cryptex Project](https://github.com/SaintsSec/Cryptex-old)
 - Icon designed by [Adioma](https://adioma.com)
